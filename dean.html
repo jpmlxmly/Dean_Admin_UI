@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register a Dean</title>
+    <link rel="stylesheet" href="index.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        background-color: #f7faff;
+      }
+
+      /* Main Content */
+      .main-content {
+        flex-grow: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      .form-container {
+        width: 800px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .form-container label {
+        display: block;
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 10px;
+      }
+
+      .form-container input,
+      .form-container select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .form-container button {
+        padding: 15px 150px;
+        font-size: 15px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .form-container button:hover {
+        background-color: #0056b3;
+      }
+
+      .btn-submit {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <img src="logo.png" alt="Logo" />
+      <ul>
+        <li><a href="registrar_dashboard.html">Dashboard</a></li>
+        <li><a href="fillupform.html">Student Form</a></li>
+        <li><a href="dashboardcolleges.html">Archives</a></li>
+        <li><a class="active" href="dean.html">Sign up Dean</a></li>
+        <li><a href="re.html">Diploma Request</a></li>
+        <li><a href="pending.html">Pending Accounts</a></li>
+      </ul>
+    </nav>
+    <div class="main-content">
+      <div class="header">
+        <h1>Register a Dean</h1>
+      </div>
+      <div class="form-container">
+        <h3>Fill Up Details</h3>
+        <form>
+          <label for="name">Dean's Full Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter full name"
+            required
+          />
+
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter email address"
+            required
+          />
+
+          <label for="college">College</label>
+          <select id="college" name="college" required>
+            <option value="" disabled selected>Select College</option>
+            <option value="COT">COT - College of Technology</option>
+            <option value="CAS">CAS - College of Arts and Sciences</option>
+            <option value="CIR">
+              CIR - College of International Relations
+            </option>
+            <option value="CITHM">
+              CITHM - College of International Tourism and Hospitality
+              Management
+            </option>
+          </select>
+
+          <label for="publicKey">Generated Public Key</label>
+          <input
+            type="text"
+            id="publicKey"
+            name="publicKey"
+            placeholder="Automatically generated"
+            disabled
+          />
+          <div class="btn-submit">
+            <button type="submit">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

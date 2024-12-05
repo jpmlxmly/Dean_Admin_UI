@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Form</title>
+    <link rel="stylesheet" href="index.css"/>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        background-color: #f7faff;
+      }
+
+
+      /* Main Content */
+      .main-content {
+        flex-grow: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      .form-container {
+        width: 800px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .form-container label {
+        display: block;
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 10px;
+      }
+
+      .form-container input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .form-container button {
+        padding: 15px 150px;
+        font-size: 15px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .form-container button:hover {
+        background-color: #0056b3;
+      }
+
+      .btn-submit{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <img src="logo.png" alt="Logo" />
+      <ul>
+        <li><a href="registrar_dashboard.html">Dashboard</a></li>
+        <li><a class="active" href="fillupform.html">Student Form</a></li>
+        <li><a href="dashboardcolleges.html">Archives</a></li>
+        <li><a href="dean.html">Sign up Dean</a></li>
+        <li><a href="re.html">Diploma Request</a></li>
+        <li><a href="pending.html">Pending Accounts</a></li>
+      </ul>
+    </nav>
+    <div class="main-content">
+      <div class="header">
+        <h1>Student Form</h1>
+      </div>
+      <div class="form-container">
+        <h3>Fill Up Details</h3>
+        <form>
+          <label for="student-name">Student Name</label>
+          <input
+            type="text"
+            id="student-name"
+            name="student-name"
+            placeholder="Enter your full name"
+            required
+          />
+
+          <label for="course">Course</label>
+          <input
+            type="text"
+            id="course"
+            name="course"
+            placeholder="Enter your course"
+            required
+          />
+
+          <label for="graduation-date">Date of Graduation</label>
+          <input
+            type="date"
+            id="graduation-date"
+            name="graduation-date"
+            required
+          />
+          <div class="btn-submit">
+          <button type="submit">Submit</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

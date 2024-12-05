@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Diploma Archives</title>
+    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        background-color: #f7faff;
+      }
+
+      /* Main Content */
+      .mainDashboard {
+        flex-grow: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+        color: #333;
+      }
+
+        .mainDashboard p {
+        font-weight: 100;
+        font-size: 1.2rem;
+        margin-right: auto; /* Allow the paragraph to take space on the left */
+        }
+
+      .form-container {
+        width: 800px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-container h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .form-container label {
+        display: block;
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 10px;
+      }
+
+      .form-container input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+
+      .btn-accept {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .btn-accept:hover {
+        background-color: #0056b3;
+      }
+
+      .btn-decline {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #9d9d9d;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .btn-decline:hover {
+        background-color: #797979;
+      }
+      .action-buttons{
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      /*HEADER*/
+    .db-header {
+    display: flex; 
+    justify-content: end; 
+    width: 98%; 
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    margin-top: 12px;
+    margin-left: 10px;
+    }
+    .db-header a {
+    text-decoration: none;
+    color: #0c0c0c;
+    }
+    .db-header a:hover
+    {
+      transition: 0.3s ease;
+      color: #007bff;
+    }
+    .searchcontainer {
+    display: flex;
+    align-items: center;
+    width: 285px;
+    margin-right: 20px;
+    margin-top: -5px;
+    }
+    .search-input {
+    flex: 1; /* Grow to fill space */
+    padding: 10px;
+    border: none;
+    border-radius: 15px 0 0 15px;
+    font-size: 0.9rem;
+    background-color: #e6e6e6b8;
+    outline: none;
+    }
+    .searchbtn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 0 15px 15px 0;
+    background-color: #e6e6e6b8;
+    color: #000000;
+    cursor: pointer;
+    }
+    .searchbtn i {
+    font-size: 17px;
+    }
+    /*TABLE*/
+    .table-school
+    {
+    width: 98%;
+    border-collapse: collapse;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+
+    }
+    .table-school th 
+    {
+    font-size: large;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #ffffff;
+    color: #222222;
+    border: 1px solid #ddd;
+    }
+
+    .table-school td, .table-school th {
+    padding: 20px;
+    }
+
+    .table-school tr
+    {
+    color: #222222;
+    border: 1px solid #ddd;
+    padding: 4px;
+    }
+
+    .table-school tr:nth-child(odd){background-color: #f2f2f2;}
+    .table-school tr:nth-child(even){background-color: #ffffff;}
+    .table-school tr:hover {background-color: #ddd;}
+
+    .btn-view
+    {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;     
+    }
+    .btn-view:hover
+    {
+        background-color: #0056b3;    
+    }
+    /*PAGINATION*/
+    .pagination {
+    margin-left: 65%;
+    margin-top: 2%;
+    }
+    .pagination a {
+    color: #000000;
+    float: left;
+    padding: 15px 16px;
+    text-decoration: none;
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #DEE2E6;
+    }
+    .pagination a.active {
+    background-color: #007bff;
+    color: #FFFFFF;
+    }
+    .pagination a.prev {
+    border-radius: 8px 0 0 8px;
+    }
+    .pagination a.end {
+    border-radius: 0 8px 8px 0;
+    }
+    .pagination a:hover:not(.active) {
+    background-color: #ddd;
+    }
+
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <img src="logo.png" alt="Logo" />
+      <ul>
+        <li><a href="registrar_dashboard.html">Dashboard</a></li>
+        <li><a href="fillupform.html">Student Form</a></li>
+        <li><a href="dashboardcolleges.html">Archives</a></li>
+        <li><a href="dean.html">Sign up Dean</a></li>
+        <li><a class="active" href="re.html">Diploma Request</a></li>
+        <li><a href="pending.html">Pending Accounts</a></li>
+      </ul>
+    </nav>
+    <div class="mainDashboard">
+      <div class="header">
+        <h1>Diploma Requests</h1>
+      </div>
+        <div class ="db-header">
+              <div class="searchcontainer">
+                <input type="text" placeholder="Search" class="search-input">
+                <button class="searchbtn">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            <i class="fa-solid fa-filter"></i>
+        </div>
+        <div class="db-table">
+          <table class="table-school" id="schoolTable">
+              <thead>
+                <tr>
+                  <th>Last Name</th>
+                  <th>First Name</th>
+                  <th>Middle Name</th>
+                  <th>Valid ID</th>
+                  <th>Selfie</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+            <tbody id="schoolTable-body">
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination">
+          <a class="prev" href="#">Previous</a>
+          <a href="#">1</a>
+          <a class="active" href="#">2</a>
+          <a href="#">3</a>
+          <a href="#">4</a>
+          <a href="#">5</a>
+          <a href="#">6</a>
+          <a class="end" href="#">Next</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+    let userData = [
+        {
+            lastName: "John",
+            firstName: "Patrick",
+            middleName: "Malay",
+            course: "BS Computer Science",
+            dateGraduated: "12/07/22"
+        },
+        {
+            lastName: "John",
+            firstName: "Patrick",
+            middleName: "Malay",
+            course: "BS Computer Science",
+            dateGraduated: "12/07/22"
+        },
+        {
+          lastName: "John",
+            firstName: "Patrick",
+            middleName: "Malay",
+            course: "BS Computer Science",
+            dateGraduated: "12/07/22"
+        },
+        {
+          lastName: "John",
+            firstName: "Patrick",
+            middleName: "Malay",
+            course: "BS Computer Science",
+            dateGraduated: "12/07/22"
+        }
+    ];
+
+    function renderTable() {
+        const tableBody = document.getElementById('schoolTable-body');
+        tableBody.innerHTML = ''; // Clear existing rows
+
+        userData.forEach((user, index) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${user.lastName}</td>
+                <td>${user.firstName}</td>
+                <td>${user.middleName}</td>
+                <td>${user.course}</td>
+                <td>${user.dateGraduated}</td>
+                <td class="action-buttons">
+                    <button class="btn-accept" onclick="approveUser(${index})">Accept</button>
+                    <button class="btn-decline" onclick="declineUser(${index})">Decline</button>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+
+    function approveUser(index) {
+        alert(`User ${userData[index].firstName} ${userData[index].lastName} approved!`);
+        userData.splice(index, 1);
+        renderTable();
+    }
+
+    function declineUser(index) {
+        alert(`User ${userData[index].firstName} ${userData[index].lastName} declined!`);
+        userData.splice(index, 1);
+        renderTable();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderTable);
+  </script>

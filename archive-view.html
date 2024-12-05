@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document Signing UI</title>
+    <style>
+      /* General Page Styling */
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        background-color: #f8f9fa;
+        color: #333;
+      }
+
+      /* Sidebar Styling */
+      .sidebar {
+        width: 250px;
+        background-color: #ffffff;
+        border-right: 1px solid #ddd;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px;
+      }
+
+      .sidebar img {
+        width: 150px;
+        margin-bottom: 20px;
+      }
+
+      .sidebar ul {
+        list-style: none;
+        padding: 0;
+        width: 100%;
+      }
+
+      .sidebar ul li {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      .sidebar ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 16px;
+        display: block;
+        padding: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .sidebar ul li a:hover {
+        background-color: #f0f0f0;
+        color: #007bff;
+      }
+
+      /* Main Content */
+      .main-content {
+        flex-grow: 1;
+        padding: 20px;
+        max-width: 1400px;
+        margin: 40px auto;
+        background-color: #fff;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* Document Viewer Styling */
+      .document-viewer {
+        flex: 3;
+        padding-right: 20px;
+      }
+
+      .document {
+        width: 100%;
+        height: 700px;
+        border: 1px solid #ddd;
+        background-color: #fdfdfd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #666;
+        text-align: center;
+      }
+
+      /* Document Info Styling */
+      .document-info {
+        flex: 2;
+        padding: 20px;
+        background-color: #fdfdfd;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .doc-title h2 {
+        font-size: 1.8rem;
+        color: #333;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      .status {
+        font-size: 1.2rem;
+        text-align: center;
+        color: green;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+
+      .signatures {
+        font-size: 1rem;
+        margin-top: 30px;
+      }
+
+      .signature-list {
+        margin-top: 15px;
+      }
+
+      .card {
+        display: flex;
+        align-items: center;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 15px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s;
+      }
+
+      .card:hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .avatar {
+        width: 50px;
+        height: 50px;
+        background-color: #007bff;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-right: 15px;
+      }
+
+      .details {
+        flex-grow: 1;
+        font-size: 0.9rem;
+      }
+
+      .details p {
+        margin: 0;
+      }
+
+      .btn-sign {
+        width: 100%;
+        background-color: #007bff;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 30px;
+        transition: all 0.3s;
+      }
+
+      .btn-sign:hover {
+        background-color: #0056b3;
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <ul>
+        <li><a href="archives.html">Back</a></li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Document Viewer Section -->
+      <div class="document-viewer">
+        <div class="document">
+          <div class="mock-diploma">
+            <h1 class="diploma-title">Diploma of Achievement</h1>
+            <p class="diploma-subtitle">Awarded by</p>
+            <p class="institution-name">University of Blockchain Studies</p>
+            <p class="diploma-body">
+              This certifies that
+              <span class="student-name">[Student Name]</span> has successfully
+              completed the course requirements for the degree of
+              <strong>Blockchain Engineering</strong> with distinction.
+            </p>
+            <div class="signature-section">
+              <div class="signature">
+                <p class="sig-line">_______________________</p>
+                <p class="sig-title">Head of Department</p>
+              </div>
+              <div class="signature">
+                <p class="sig-line">_______________________</p>
+                <p class="sig-title">Registrar</p>
+              </div>
+            </div>
+            <p class="date-issued">
+              Issued on: <strong>November 28, 2024</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Document Information Section -->
+      <div class="document-info">
+        <div class="doc-title">
+          <h2>Document Information</h2>
+        </div>
+        <p class="status">Status: Completed ✅</p>
+
+        <div class="signatures">
+          <p><strong>Signatures:</strong></p>
+          <div class="signature-list">
+            <!-- Signature Cards -->
+            <div class="card">
+              <div class="avatar">JD</div>
+              <div class="details">
+                <p><strong>John Doe</strong></p>
+                <p>john.doe@example.com</p>
+              </div>
+            </div>
+            <div class="card">
+              <div class="avatar">JS</div>
+              <div class="details">
+                <p><strong>Jane Smith</strong></p>
+                <p>jane.smith@example.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

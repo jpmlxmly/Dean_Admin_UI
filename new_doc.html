@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Envelope</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        background-color: #f7faff;
+      }
+
+      /* Sidebar */
+      .navbar {
+        width: 250px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-right: 1px solid #e0e0e0;
+      }
+
+      .navbar img {
+        width: 150px;
+        margin-top: 30px;
+      }
+
+      .navbar ul {
+        list-style: none;
+        margin-top: 50px;
+        width: 100%;
+      }
+
+      .navbar ul li {
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .navbar ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        display: block;
+        padding: 10px 20px;
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      .navbar ul li a:hover {
+        background-color: #f0f0f0;
+        color: #007bff;
+      }
+
+      .navbar a.active{
+        color: #0053ad;
+      }
+
+      /* Main Content */
+      .main-content {
+        flex-grow: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+        color: #333;
+      }
+
+      .header button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .header button:hover {
+        background-color: #0056b3;
+      }
+
+      .dashboard-section {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .dashboard-card {
+        width: 1000px;
+        margin-left: 100px;
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .dashboard-card h3 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 15px;
+      }
+
+      .dashboard-card p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 10px;
+      }
+
+      .dashboard-card button {
+        padding: 10px 15px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+      }
+
+      .dashboard-card button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Pending Section */
+      .pending-section {
+        width: 100%;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .pending-section .info {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .info h3 {
+        font-size: 18px;
+        color: #333;
+      }
+
+      .info .view-all {
+        background-color: transparent;
+        border: 2px solid #0056d6;
+        color: #0056d6;
+        padding: 8px 15px;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .info .view-all:hover {
+        background-color: #0056d6;
+        color: #fff;
+      }
+
+      .status {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .status .pending-count {
+        text-align: center;
+      }
+
+      .status .pending-count span {
+        font-size: 30px;
+        font-weight: bold;
+        color: #333;
+      }
+
+      .status .summary {
+        text-align: center;
+        font-size: 14px;
+        color: #333;
+      }
+
+      .status .summary span {
+        display: inline-block;
+        margin-top: 5px;
+        font-size: 16px;
+        color: #0056d6;
+      }
+
+      .steps {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .steps ul {
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+        margin-top: 10px;
+        margin-left: 20px;
+      }
+      .steps li {
+        list-style: decimal;
+      }
+      .first-card input {
+        width: 100%;
+        height: 40px;
+        padding: 5px 10px;
+      }
+      .second-card {
+        text-align: center;
+        padding: 150px 100px;
+        margin-bottom: 20px;
+      }
+      .second-card p {
+        line-height: 25px;
+      }
+      .third-card {
+        background-color: transparent;
+        box-shadow: none;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+      }
+      .footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        background-color: #ffffff;
+        border-top: 1px solid #e0e0e0;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: flex-end;
+        box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .footer a {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      .footer a:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <img src="logo.png" alt="Logo" />
+
+      <ul>
+        <li><a href="registrar_dashboard.html">Dashboard</a></li>
+        <li><a href="fillupform.html">Student Form</a></li>
+        <li><a href="dashboardcolleges.html">Archives</a></li>
+        <li><a href="dean.html">Sign up Dean</a></li>
+        <li><a href="re.html">Diploma Request</a></li>
+        <li><a href="pending.html">Pending Accounts</a></li>
+      </ul>
+    </nav>
+    <div class="main-content">
+      <div class="header">
+        <div class="steps">
+          <h1>New Envelope</h1>
+
+          <ul>
+            <li style="color: #0056b3;">Prepare and Fill Envelope</li>
+            <li>Add Recipients</li>
+            <li>Review</li>
+          </ul>
+        </div>
+      </div>
+      <div class="dashboard-card third-card">
+        <h3>Prepare and Fill Envelope</h3>
+        <p>
+          Give your envelope a unique title that describes its contents or
+          purpose. Add files to your envelope. Use the drag and drop box or
+          browse files to upload documents and add them to the envelope.
+        </p>
+      </div>
+      <div class="dashboard-section">
+        <div class="dashboard-card first-card">
+          <h3>Envelope Title</h3>
+          <input
+            type="text"
+            placeholder="Enter envelope title (eg.,'COT folder Q3')"
+          />
+        </div>
+        <div class="dashboard-card second-card">
+          <h3>Sent for Signing</h3>
+          <p>
+            Drag and drop documents into this area.<br />
+            Max 10 MB / Max 2 file(s) / .pdf
+          </p>
+          <button>Browse Documents</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <a href="add_recipcients.html">Continue</a>
+    </div>
+  </body>
+</html>
