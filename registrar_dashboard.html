@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
+    <link rel="stylesheet" href="index.css" />
     <style>
       * {
         margin: 0;
@@ -17,50 +18,6 @@
         flex-direction: row;
         height: 100vh;
         background-color: #f7faff;
-      }
-
-      /* Sidebar */
-      .navbar {
-        width: 250px;
-        background-color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border-right: 1px solid #e0e0e0;
-      }
-
-      .navbar img {
-        width: 150px;
-        margin-top: 30px;
-      }
-
-      .navbar ul {
-        list-style: none;
-        margin-top: 50px;
-        width: 100%;
-      }
-
-      .navbar ul li {
-        margin: 20px 0;
-        text-align: center;
-      }
-
-      .navbar ul li a {
-        text-decoration: none;
-        color: #333;
-        font-size: 18px;
-        display: block;
-        padding: 10px 20px;
-        transition: background 0.3s ease, color 0.3s ease;
-      }
-
-      .navbar ul li a:hover {
-        background-color: #f0f0f0;
-        color: #007bff;
-      }
-
-      .navbar a.active{
-        color: #0053ad;
       }
 
       /* Main Content */
@@ -227,10 +184,11 @@
     <nav class="navbar">
       <img src="logo.png" alt="Logo" />
       <ul>
-        <li><a class="active" href="registrar_dashboard.html">Dashboard</a></li>
+        <li><a href="registrar_dashboard.html">Dashboard</a></li>
         <li><a href="fillupform.html">Student Form</a></li>
-        <li><a href="dashboardcolleges.html">Archives</a></li>
+        <li><a class="active" href="dashboardcolleges.html">Archives</a></li>
         <li><a href="dean.html">Sign up Dean</a></li>
+        <li><a href="upload-bchain.html">Blockchain Diploma Upload</a></li>
         <li><a href="re.html">Diploma Request</a></li>
         <li><a href="pending.html">Pending Accounts</a></li>
       </ul>

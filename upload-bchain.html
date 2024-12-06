@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Form</title>
+    <title>Blockchain Diploma Upload</title>
     <link rel="stylesheet" href="index.css" />
     <style>
       * {
@@ -16,67 +16,49 @@
       /* Main body layout */
       body {
         display: flex;
-        min-height: 100vh;
+        flex-direction: row;
+        height: 100vh;
         background-color: #f7faff;
       }
-
-      /* Sidebar */
-      /* Sidebar */
-      .navbar {
-        width: 250px;
-        background-color: #ffffff;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border-right: 1px solid #e0e0e0;
-      }
-
-      .navbar img {
-        width: 150px;
-        margin-top: 30px;
-      }
-
-      .navbar ul {
-        list-style: none;
-        margin-top: 50px;
-        width: 100%;
-      }
-
-      .navbar ul li {
-        margin: 20px 0;
-        text-align: center;
-      }
-
-      .navbar ul li a {
-        text-decoration: none;
-        color: #333;
-        font-size: 18px;
-        display: block;
-        padding: 10px 20px;
-        transition: background 0.3s ease, color 0.3s ease;
-      }
-
-      .navbar ul li a:hover {
-        background-color: #f0f0f0;
-        color: #007bff;
-      }
-
       /* Main content section */
       .main-content {
-        margin-left: -60px; /* Offset for sidebar */
-        padding: 20px;
         flex-grow: 1;
+        padding: 20px;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
+      }
+            
+      .header {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+        color: #333;
       }
 
       .container {
-        background-color: white;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        width: 400px;
+        width: 800px;
+        margin: 0 auto;
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      
+      .container h2 {
+        font-size: 20px;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
       }
 
       h2 {
@@ -93,19 +75,19 @@
       }
 
       .upload-btn {
-        background-color: #c11414;
-        color: white;
-        padding: 12px;
-        font-size: 16px;
+        padding: 15px 75px;
+        font-size: 15px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
         border: none;
-        border-radius: 4px;
+        border-radius: 5px;
         cursor: pointer;
-        width: 100%;
+        transition: background 0.3s ease;
       }
 
       .upload-btn:hover {
-        background-color: #d5d0d0;
-        color: black;
+        background-color: #0056b3;
       }
 
       .status {
@@ -118,7 +100,7 @@
 
       .status.success {
         background-color: #ffffff;
-        color: #ab2222;
+        color: #007bff;
       }
 
       .status.error {
@@ -137,7 +119,7 @@
 
       .progress {
         height: 100%;
-        background-color: #dc1a1a;
+        background-color: #007bff;
         width: 0;
         border-radius: 10px;
         transition: width 1s ease-in-out;
@@ -161,16 +143,19 @@
       <ul>
         <li><a href="registrar_dashboard.html">Dashboard</a></li>
         <li><a href="fillupform.html">Student Form</a></li>
-        <li><a class="active" href="dashboardcolleges.html">Archives</a></li>
+        <li><a href="dashboardcolleges.html">Archives</a></li>
         <li><a href="dean.html">Sign up Dean</a></li>
+        <li><a class="active" href="upload-bchain.html">Blockchain Diploma Upload</a></li>
         <li><a href="re.html">Diploma Request</a></li>
         <li><a href="pending.html">Pending Accounts</a></li>
-        <li><a href="upload-bchain.html">Upload to Blockchain</a></li>
       </ul>
     </div>
 
     <!-- Main content section -->
     <div class="main-content">
+      <div class="header">
+        <h1>Blockchain Diploma Upload</h1>
+      </div>
       <div class="container">
         <h2>Upload and Process Diploma</h2>
 
@@ -193,7 +178,7 @@
       </div>
     </div>
 
-    <script>
+    <script>                                    
       // Get elements
       const fileInput = document.getElementById("fileUpload");
       const fileName = document.getElementById("fileName");
