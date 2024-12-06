@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Form</title>
+    <link rel="stylesheet" href="index.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      /* Main body layout */
+      body {
+        display: flex;
+        min-height: 100vh;
+        background-color: #f7faff;
+      }
+
+      /* Sidebar */
+      /* Sidebar */
+      .navbar {
+        width: 250px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-right: 1px solid #e0e0e0;
+      }
+
+      .navbar img {
+        width: 150px;
+        margin-top: 30px;
+      }
+
+      .navbar ul {
+        list-style: none;
+        margin-top: 50px;
+        width: 100%;
+      }
+
+      .navbar ul li {
+        margin: 20px 0;
+        text-align: center;
+      }
+
+      .navbar ul li a {
+        text-decoration: none;
+        color: #333;
+        font-size: 18px;
+        display: block;
+        padding: 10px 20px;
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      .navbar ul li a:hover {
+        background-color: #f0f0f0;
+        color: #007bff;
+      }
+
+      /* Main content section */
+      .main-content {
+        margin-left: -60px; /* Offset for sidebar */
+        padding: 20px;
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        width: 400px;
+      }
+
+      h2 {
+        text-align: center;
+        color: #f44141;
+      }
+
+      .upload-section {
+        text-align: center;
+      }
+
+      input[type="file"] {
+        display: none;
+      }
+
+      .upload-btn {
+        background-color: #c11414;
+        color: white;
+        padding: 12px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .upload-btn:hover {
+        background-color: #d5d0d0;
+        color: black;
+      }
+
+      .status {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #f1f1f1;
+        border-radius: 4px;
+        text-align: center;
+      }
+
+      .status.success {
+        background-color: #ffffff;
+        color: #ab2222;
+      }
+
+      .status.error {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+
+      .progress-bar {
+        margin-top: 20px;
+        height: 20px;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .progress {
+        height: 100%;
+        background-color: #dc1a1a;
+        width: 0;
+        border-radius: 10px;
+        transition: width 1s ease-in-out;
+      }
+
+      .container h2 {
+        margin-bottom: 20px;
+      }
+
+      .file-name {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #555;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="logo.png" alt="Logo" />
+      <ul>
+        <li><a href="registrar_dashboard.html">Dashboard</a></li>
+        <li><a href="fillupform.html">Student Form</a></li>
+        <li><a class="active" href="dashboardcolleges.html">Archives</a></li>
+        <li><a href="dean.html">Sign up Dean</a></li>
+        <li><a href="re.html">Diploma Request</a></li>
+        <li><a href="pending.html">Pending Accounts</a></li>
+        <li><a href="upload-bchain.html">Upload to Blockchain</a></li>
+      </ul>
+    </div>
+
+    <!-- Main content section -->
+    <div class="main-content">
+      <div class="container">
+        <h2>Upload and Process Diploma</h2>
+
+        <!-- Upload Section -->
+        <div class="upload-section">
+          <label for="fileUpload" class="upload-btn"
+            >Upload Signed Diploma</label
+          >
+          <input type="file" id="fileUpload" />
+          <div class="file-name" id="fileName">No file selected</div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+          <div id="progress" class="progress"></div>
+        </div>
+
+        <!-- Status Message -->
+        <div id="statusMessage" class="status">Awaiting action...</div>
+      </div>
+    </div>
+
+    <script>
+      // Get elements
+      const fileInput = document.getElementById("fileUpload");
+      const fileName = document.getElementById("fileName");
+      const progressBar = document.getElementById("progress");
+      const statusMessage = document.getElementById("statusMessage");
+
+      // Handle file selection
+      fileInput.addEventListener("change", function () {
+        const file = fileInput.files[0];
+        if (file) {
+          fileName.textContent = `Selected file: ${file.name}`;
+          statusMessage.textContent = "Ready to upload and process...";
+        } else {
+          fileName.textContent = "No file selected";
+          statusMessage.textContent = "Please select a file.";
+        }
+      });
+
+      // Process button click event
+      fileInput.addEventListener("change", function () {
+        // Simulate processing the file on click
+        if (fileInput.files.length > 0) {
+          statusMessage.textContent = "Processing your diploma...";
+          processUpload();
+        }
+      });
+
+      // Simulate file processing
+      function processUpload() {
+        let progress = 0;
+        statusMessage.textContent = "Uploading and processing diploma...";
+
+        const interval = setInterval(() => {
+          progress += 20;
+          progressBar.style.width = progress + "%";
+
+          if (progress === 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+              statusMessage.textContent =
+                "Diploma successfully uploaded and processed!";
+              statusMessage.className = "status success";
+            }, 500);
+          }
+        }, 1000);
+
+        // Simulate uploading to IPFS and storing on Blockchain in steps
+        setTimeout(() => {
+          statusMessage.textContent = "Uploaded to IPFS...";
+
+          setTimeout(() => {
+            statusMessage.textContent = "Storing on blockchain...";
+          }, 2000);
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>
