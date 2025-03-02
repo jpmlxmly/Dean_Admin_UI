@@ -5,18 +5,18 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Student Form</title>
       <link rel="stylesheet" href="index.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
       <style>
         * {
           margin: 0;
           padding: 0;
           box-sizing: border-box;
-          font-family: Arial, sans-serif;
         }
 
         body {
           display: flex;
           flex-direction: row;
-          height: 100vh;
+          height: 112vh;
           background-color: #f7faff;
         }
 
@@ -34,23 +34,23 @@
           justify-content: space-between;
           align-items: center;
           padding: 20px;
-          background-color: #ffffff;
+          background-color: #303455;
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
           border-radius: 10px;
         }
 
         .header h1 {
           font-size: 24px;
-          color: #333;
+          color: #fff;
         }
 
         .form-container {
-          width: 800px;
+          width: 900px;
           margin: 0 auto;
           background-color: #ffffff;
           border: 1px solid #e0e0e0;
           border-radius: 10px;
-          padding: 30px;
+          padding: 20px;
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         }
 
@@ -67,29 +67,54 @@
           margin-bottom: 10px;
         }
 
-        .form-container input {
+        .form-container input, .form-container select {
           width: 100%;
           padding: 10px;
-          margin-bottom: 20px;
+          margin-bottom: 10px;
           border: 1px solid #ddd;
           border-radius: 5px;
           font-size: 16px;
+          color: #555;
+        }
+
+        .file-upload-container {
+          width: 100%;
+          background-color: #fafafa;
+          padding: 20px;
+          margin-bottom: 20px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+          text-align: center;
+        }
+
+        .file-upload-btn {
+          background: none;
+          border: none;
+          color: #555;
+          font-size: 18px;
+          cursor: pointer;
+          padding: 10px 20px;
+        }
+
+
+        .file-upload-btn:hover {
+          color: #359ab9;
+        }
+
+        .file-upload-help {
+          display: block;
+          margin-top: 10px;
+          color: #666;
+          font-size: 12px;
         }
 
         .form-container button {
           padding: 15px 150px;
-          font-size: 15px;
           font-weight: bold;
-          color: #fff;
-          background-color: #007bff;
           border: none;
           border-radius: 5px;
           cursor: pointer;
           transition: background 0.3s ease;
-        }
-
-        .form-container button:hover {
-          background-color: #0056b3;
         }
 
         .btn-submit {
@@ -97,21 +122,26 @@
           justify-content: center;
           align-items: center;
         }
+
+        .btn-submit button {
+          padding: 15px 150px;
+          font-size: 15px;
+          font-weight: bold;
+          color: #fff;
+          background-color: #359ab9;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+        }
+
+      .btn-submit button:hover {
+        background-color: rgb(2, 72, 147);
+      }
+
       </style>
     </head>
     <body>
-      <nav class="navbar">
-        <img src="logo.png" alt="Logo" />
-        <ul>
-          <li><a href="registrar_dashboard.html">Dashboard</a></li>
-          <li><a class="active" href="fillupform.html">Student Form</a></li>
-          <li><a href="dashboardcolleges.html">Archives</a></li>
-          <li><a href="dean.html">Sign up Dean</a></li>
-          <li><a href="upload-bchain.html">Blockchain Diploma Upload</a></li>
-          <li><a href="re.html">Diploma Request</a></li>
-          <li><a href="pending.html">Pending Accounts</a></li>
-        </ul>
-      </nav>
+      <div id="navbar-container"></div> <!--Navbar will be populated here-->
       <div class="main-content">
         <div class="header">
           <h1>Student Form</h1>
@@ -128,14 +158,36 @@
               required
             />
 
-            <label for="course">Course</label>
-            <input
-              type="text"
-              id="course"
-              name="course"
-              placeholder="Enter your course"
-              required
-            />
+            <label for="program">College</label>
+            <select
+              id="college"
+              name="college"
+              required>
+            <option value="" disabled selected>Select your college</option>
+            <option value="broadcasting">College of Arts and Sciences</option>
+            <option value="comm">College of Business Administration</option>
+            <option value="journalism">College of International Relations</option>
+            <option value="legal_management">College of International Tourism and Hospitality Management</option>
+            <option value="multimedia">College of Technology</option>
+            </select>
+
+            <label for="program">Program</label>
+            <select
+              id="program"
+              name="program"
+              required>
+            <option value="" disabled selected>Select your program</option>
+            <option value="broadcasting">AB Broadcasting</option>
+            <option value="comm">AB Communication</option>
+            <option value="journalism">AB Journalism</option>
+            <option value="legal_management">AB Legal Management</option>
+            <option value="multimedia">AB Multimedia Arts</option>
+            <option value="computer_science">BS Computer Science</option>
+            <option value="information_tech">BS Information Technology</option>
+            <option value="esports">BS Esports </option>
+            <option value="hospitality_management">BS International Hospitality Management</option>
+            <option value="tourism">BS International Tourism Management</option>
+            </select>
 
             <label for="graduation-date">Date of Graduation</label>
             <input
@@ -144,6 +196,16 @@
               name="graduation-date"
               required
             />
+
+            <label for="upload-docu">Upload Document</label>
+            <div class="file-upload-container">
+              <input type="file" id="file-upload" name="file-upload" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none;">
+              <button type="button" class="file-upload-btn">
+                <i class="fas fa-cloud-upload-alt"></i> Choose Files
+              </button>
+              <br><small class="file-upload-help">Accepted formats: PDF, JPG, PNG</small>
+            </div>
+            
             <div class="btn-submit">
               <button type="submit">Submit</button>
             </div>
@@ -152,3 +214,11 @@
       </div>
     </body>
   </html>
+  <script>
+    fetch("/frontend/navbar.html")
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("navbar-container").innerHTML = data;
+      })
+      .catch(error => console.error("Error loading navbar:", error));
+  </script>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      body {
+        background-image: url(/rsc/bg3.png);
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="dashboardpage">
+      <!--SIDEBAR-->
+      <div class="sidebar">
+        <div class="logo">
+          <img src="/rsc/logo.png" width="35px">
+        </div>
+          <div class="nav-item">
+            <a href="#">
+              <span class="icon"><i class="fas fa-home"></i></span>
+              <span class="text">HOME</span>
+            </a>
+          </div>
+          <div class="nav-item">
+            <a href="login.html">
+              <span class="icon"><i class="fas fa-sign-out-alt" style="margin-top: 350px;"></i></span>
+              <span class="text">LOGOUT</span>
+            </a>
+          </div>
+      </div>
+      <main class="mainDashboard">
+          <div class = "header">
+            <p>Welcome Student <b>Username!</b></p>
+          </div>
+          <div class="contents">
+            <div class="reqs">
+              <h1>Diploma Requests</h1>
+              <button class="button-reqs" data-toggle="modal"><i class="fas fa-plus"></i> Make a Request</button>
+            </div>
+            <div class="current-reqs">
+              <p>You currently have no pending requests.</p>
+            </div>
+          </div>
+      </main>
+         <!-- MODAL -->
+         <div class="modal" id="request-modal">
+          <div class="modal-dialog" style="margin-top: 1%;">
+            <div class="modal-header">
+              <h2><i class="fas fa-file-alt"></i> Make a Request</h2>
+              <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+              <form id="request-form">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                  <label for="id-number">Student ID Number</label>
+                  <input type="text" id="id-number" name="id-number" required placeholder="Enter your ID number">
+                </div>
+
+                <div class="form-group">
+                  <label for="grad">Date of Graduation</label>
+                  <input type="date" id="grad" name="grad" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="email">Email Address</label>
+                  <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                </div>
+                
+                <div class="form-group">
+                  <label for="phone">Contact Number</label>
+                  <input type="tel" id="phone" name="phone" required placeholder="Enter your contact number">
+                </div>
+
+                <div class="form-group file-upload">
+                  <label for="file-upload">Upload Affidavit of Loss</label>
+                  <div class="file-upload-container">
+                    <input type="file" id="file-upload" name="file-upload" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none;">
+                    <button type="button" class="file-upload-btn">
+                      <i class="fas fa-cloud-upload-alt"></i> Choose Files
+                    </button>
+                    <span class="file-upload-text">No file chosen</span>
+                  </div>
+                  <small class="file-upload-help">Accepted formats: PDF, DOC, DOCX, JPG, PNG</small>
+                </div>
+                
+                <div class="form-actions">
+                  <button type="button" class="cancel-btn">Cancel</button>
+                  <button type="submit" class="submit-btn">Submit Request</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const modal = document.getElementById('request-modal');
+          const openBtn = document.querySelector('.button-reqs');
+          const closeBtn = document.querySelector('.close-modal');
+          const cancelBtn = document.querySelector('.cancel-btn');
+          const form = document.getElementById('request-form');
+  
+          function openModal() {
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+          }
+  
+          function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+          }
+  
+          openBtn.addEventListener('click', openModal);
+          closeBtn.addEventListener('click', closeModal);
+          cancelBtn.addEventListener('click', closeModal);
+  
+          // Close modal when clicking outside
+          modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+              closeModal();
+            }
+          });
+  
+          // Handle form submission
+          form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+              name: document.getElementById('name').value,
+              idNumber: document.getElementById('id-number').value,
+              gradDate: document.getElementById('grad').value,
+              email: document.getElementById('email').value,
+              phone: document.getElementById('phone').value
+            };
+            
+            // Close modal
+            closeModal();
+            
+            // Reset form
+            form.reset();
+          });
+        });
+      </script>
+    </body>
+</html>

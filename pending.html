@@ -11,7 +11,6 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Arial, sans-serif;
       }
 
       body {
@@ -35,14 +34,14 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px;
-        background-color: #ffffff;
+        background-image: linear-gradient(90deg, #35395e, #292d48);
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
       }
 
       .header h1 {
         font-size: 24px;
-        color: #333;
+        color: #fff;
       }
 
         .mainDashboard p {
@@ -153,11 +152,29 @@
     background-color: #e6e6e6b8;
     outline: none;
     }
+    .searchcontainer {
+    display: flex;
+    align-items: center;
+    width: 285px;
+    margin-right: 20px;
+    margin-top: -5px;
+    }
+    .search-input {
+    flex: 1; /* Grow to fill space */
+    padding: 10px;
+    border: none;
+    border-radius: 15px 0 0 15px;
+    font-size: 0.9rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    outline: none;
+    }
     .searchbtn {
     padding: 10px 15px;
     border: none;
     border-radius: 0 15px 15px 0;
-    background-color: #e6e6e6b8;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     color: #000000;
     cursor: pointer;
     }
@@ -245,18 +262,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar">
-      <img src="logo.png" alt="Logo" />
-      <ul>
-        <li><a href="registrar_dashboard.html">Dashboard</a></li>
-        <li><a href="fillupform.html">Student Form</a></li>
-        <li><a href="dashboardcolleges.html">Archives</a></li>
-        <li><a href="dean.html">Sign up Dean</a></li>
-        <li><a href="upload-bchain.html">Blockchain Diploma Upload</a></li>
-        <li><a href="re.html">Diploma Request</a></li>
-        <li><a class="active"href="pending.html">Pending Accounts</a></li>
-      </ul>
-    </nav>
+    <div id="navbar-container"></div> <!--Navbar will be populated here-->
     <div class="mainDashboard">
       <div class="header">
         <h1>Pending Account Requests</h1>
@@ -274,9 +280,9 @@
           <table class="table-school" id="schoolTable">
               <thead>
                 <tr>
-                  <th>Last Name</th>
-                  <th>First Name</th>
-                  <th>Middle Name</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>ID Number</th>
                   <th>Valid ID</th>
                   <th>Selfie</th>
                   <th>Actions</th>
@@ -301,32 +307,40 @@
   </body>
 </html>
 <script>
+    //fetches navbar
+    fetch("/frontend/navbar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar-container").innerHTML = data;
+    })
+    .catch(error => console.error("Error loading navbar:", error));
+
     let userData = [
         {
-            lastName: "John",
-            firstName: "Patrick",
-            middleName: "Malay",
+            name: "John Patrick Malay",
+            email: "john.malay@lpunetwork.edu.ph",
+            idNum: "2021-1-00786",
             validId: "#",
             selfie: "#"
         },
         {
-            lastName: "John",
-            firstName: "Maria",
-            middleName: "Santos",
+            name: "Patrick Malay",
+            email: "john.lay@lpunetwork.edu.ph",
+            idNum: "2021-1-0000",
             validId: "#",
             selfie: "#"
         },
         {
-            lastName: "John",
-            firstName: "Maria",
-            middleName: "Santos",
+            name: "Reetu Singh",
+            email: "reetu.singh@lpunetwork.edu.ph",
+            idNum: "2021-1-00102",
             validId: "#",
             selfie: "#"
         },
         {
-            lastName: "John",
-            firstName: "Maria",
-            middleName: "Santos",
+          name: "Nehemiah Damian",
+            email: "nehemiah.damian@lpunetwork.edu.ph",
+            idNum: "2021-1-00110",
             validId: "#",
             selfie: "#"
         }
@@ -339,9 +353,9 @@
         userData.forEach((user, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${user.lastName}</td>
-                <td>${user.firstName}</td>
-                <td>${user.middleName}</td>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td>${user.idNum}</td>
                 <td><a href="${user.validId}" target="_blank">View Valid ID</a></td>
                 <td><a href="${user.selfie}" target="_blank">View Selfie</a></td>
                 <td class="action-buttons">
@@ -355,13 +369,13 @@
 
 
     function approveUser(index) {
-        alert(`User ${userData[index].firstName} ${userData[index].lastName} approved!`);
+        alert(`User ${userData[index].name} approved!`);
         userData.splice(index, 1);
         renderTable();
     }
 
     function declineUser(index) {
-        alert(`User ${userData[index].firstName} ${userData[index].lastName} declined!`);
+        alert(`User ${userData[index].name} declined!`);
         userData.splice(index, 1);
         renderTable();
     }

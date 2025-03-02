@@ -10,7 +10,6 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Arial, sans-serif;
       }
 
       /* Main body layout */
@@ -34,14 +33,14 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px;
-        background-color: #ffffff;
+        background-image: linear-gradient(90deg, #35395e, #292d48);
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
       }
 
       .header h1 {
         font-size: 24px;
-        color: #333;
+        color: #fff;
       }
 
       .container {
@@ -79,7 +78,7 @@
         font-size: 15px;
         font-weight: bold;
         color: #fff;
-        background-color: #007bff;
+        background-color: #359ab9;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -87,7 +86,7 @@
       }
 
       .upload-btn:hover {
-        background-color: #0056b3;
+        background-color: rgb(2, 72, 147);
       }
 
       .status {
@@ -138,19 +137,7 @@
     </style>
   </head>
   <body>
-    <div class="navbar">
-      <img src="logo.png" alt="Logo" />
-      <ul>
-        <li><a href="registrar_dashboard.html">Dashboard</a></li>
-        <li><a href="fillupform.html">Student Form</a></li>
-        <li><a href="dashboardcolleges.html">Archives</a></li>
-        <li><a href="dean.html">Sign up Dean</a></li>
-        <li><a class="active" href="upload-bchain.html">Blockchain Diploma Upload</a></li>
-        <li><a href="re.html">Diploma Request</a></li>
-        <li><a href="pending.html">Pending Accounts</a></li>
-      </ul>
-    </div>
-
+    <div id="navbar-container"></div> <!--Navbar will be populated here-->
     <!-- Main content section -->
     <div class="main-content">
       <div class="header">
@@ -178,7 +165,16 @@
       </div>
     </div>
 
-    <script>                                    
+    <script>                         
+    // Navbar
+    fetch("/frontend/navbar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar-container").innerHTML = data;
+    })
+    .catch(error => console.error("Error loading navbar:", error));
+    
+
       // Get elements
       const fileInput = document.getElementById("fileUpload");
       const fileName = document.getElementById("fileName");

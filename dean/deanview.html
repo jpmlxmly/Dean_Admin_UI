@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document Signing UI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
       /* General Page Styling */
       body {
@@ -15,9 +16,46 @@
         color: #333;
       }
 
-      /* Sidebar Styling */
+      /* Search Section Styling */
+      .search-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .search-input {
+        padding: 12px 20px;
+        font-size: 16px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        outline: none;
+        transition: all 0.3s ease;
+        flex-grow: 1;
+        padding-right: 50px; 
+      }
+
+
+      .search-btn {
+        position: absolute;
+        right: 10px; /* Adjust based on your layout */
+        background-color: transparent;
+        border: none;
+        color: #007bff;
+        font-size: 1.2rem;
+        cursor: pointer;
+        outline: none;
+        padding: 8px;
+        transition: color 0.3s ease;
+      }
+
+      .search-btn:hover {
+        color: #0056b3;
+      }
+
       .sidebar {
-        width: 250px;
+        width: 230px;
         background-color: #ffffff;
         border-right: 1px solid #ddd;
         height: 115vh;
@@ -57,20 +95,20 @@
         color: #007bff;
       }
 
-      /* Main Content */
       .main-content {
         flex-grow: 1;
         padding: 20px;
         max-width: 1400px;
-        margin: 40px auto;
         background-color: #fff;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
         border-radius: 12px;
+      }
+
+      .content-wrapper {
         display: flex;
         justify-content: space-between;
       }
 
-      /* Document Viewer Styling */
       .document-viewer {
         flex: 3;
         padding-right: 20px;
@@ -92,7 +130,6 @@
         text-align: center;
       }
 
-      /* Document Info Styling */
       .document-info {
         flex: 2;
         padding: 20px;
@@ -182,7 +219,6 @@
         background-color: #0056b3;
       }
 
-      /* Footer */
       .footer {
         text-align: center;
         font-size: 0.9rem;
@@ -194,75 +230,92 @@
   <body>
     <!-- Sidebar -->
     <div class="sidebar">
-      <img src="logo.png" alt="Logo" />
+      <img src="/logo.png" alt="Logo" />
       <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Grades</a></li>
-        <li><a href="#">Log Out</a></li>
+        <li><a href="dean_dboard.html">Dashboard</a></li>
+        <li><a href="/login.html">Log Out</a></li>
       </ul>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
-      <!-- Document Viewer Section -->
-      <div class="document-viewer">
-        <div class="document">
-          <div class="mock-diploma">
-            <h1 class="diploma-title">Diploma of Achievement</h1>
-            <p class="diploma-subtitle">Awarded by</p>
-            <p class="institution-name">University of Blockchain Studies</p>
-            <p class="diploma-body">
-              This certifies that
-              <span class="student-name">[Student Name]</span> has successfully
-              completed the course requirements for the degree of
-              <strong>Blockchain Engineering</strong> with distinction.
-            </p>
-            <div class="signature-section">
-              <div class="signature">
-                <p class="sig-line">_______________________</p>
-                <p class="sig-title">Head of Department</p>
-              </div>
-              <div class="signature">
-                <p class="sig-line">_______________________</p>
-                <p class="sig-title">Registrar</p>
-              </div>
-            </div>
-            <p class="date-issued">
-              Issued on: <strong>November 28, 2024</strong>
-            </p>
-          </div>
-        </div>
+
+    <!-- Search Section -->
+    <div class="search-container">
+      <div class="search-wrapper">
+        <input
+          type="text"
+          class="search-input"
+          placeholder="Search Student..."
+          aria-label="Search documents"
+        />
+        <button class="search-btn" aria-label="Search">
+          <i class="fas fa-search"></i>
+        </button>
       </div>
+    </div>
 
-      <!-- Document Information Section -->
-      <div class="document-info">
-        <div class="doc-title">
-          <h2>Document Information</h2>
-        </div>
-        <p class="status">Status: Completed ✅</p>
-
-        <div class="signatures">
-          <p><strong>Signatures:</strong></p>
-          <div class="signature-list">
-            <!-- Signature Cards -->
-            <div class="card">
-              <div class="avatar">JD</div>
-              <div class="details">
-                <p><strong>John Doe</strong></p>
-                <p>john.doe@example.com</p>
+      <div class="content-wrapper">
+        <!-- Document Viewer Section -->
+        <div class="document-viewer">
+          <div class="document">
+            <div class="mock-diploma">
+              <h1 class="diploma-title">Diploma of Achievement</h1>
+              <p class="diploma-subtitle">Awarded by</p>
+              <p class="institution-name">University of Blockchain Studies</p>
+              <p class="diploma-body">
+                This certifies that
+                <span class="student-name">[Student Name]</span> has successfully
+                completed the course requirements for the degree of
+                <strong>Blockchain Engineering</strong> with distinction.
+              </p>
+              <div class="signature-section">
+                <div class="signature">
+                  <p class="sig-line">_______________________</p>
+                  <p class="sig-title">Head of Department</p>
+                </div>
+                <div class="signature">
+                  <p class="sig-line">_______________________</p>
+                  <p class="sig-title">Registrar</p>
+                </div>
               </div>
-            </div>
-            <div class="card">
-              <div class="avatar">JS</div>
-              <div class="details">
-                <p><strong>Jane Smith</strong></p>
-                <p>jane.smith@example.com</p>
-              </div>
+              <p class="date-issued">
+                Issued on: <strong>November 28, 2024</strong>
+              </p>
             </div>
           </div>
         </div>
 
-        <button class="btn-sign">Sign Document</button>
+        <!-- Document Information Section -->
+        <div class="document-info">
+          <div class="doc-title">
+            <h2>Document Information</h2>
+          </div>
+          <p class="status">Status: Completed ✅</p>
+
+          <div class="signatures">
+            <p><strong>Signatures:</strong></p>
+            <div class="signature-list">
+              <!-- Signature Cards -->
+              <div class="card">
+                <div class="avatar">JD</div>
+                <div class="details">
+                  <p><strong>Arlene Caballero</strong></p>
+                  <p>arlene.caballero@lpunetwork.edu.ph</p>
+                </div>
+              </div>
+              <div class="card">
+                <div class="avatar">JS</div>
+                <div class="details">
+                  <p><strong>Juan Dela Cruz</strong></p>
+                  <p>juan@lpunetwork.edu.ph</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn-sign">Sign Document</button>
+        </div>
       </div>
     </div>
   </body>

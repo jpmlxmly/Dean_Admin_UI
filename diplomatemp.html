@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diploma of Achievement</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .certificate {
+            width: 800px;
+            height: 600px;
+            background: linear-gradient(to bottom right, #f5f5f5, #e0e0e0);
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        .border {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid #c9a842;
+            border-radius: 15px;
+            pointer-events: none;
+        }
+        .logo {
+            text-align: center;
+        }
+        .logo img {
+            height: 80px;
+            width: auto;
+        }
+        .heading {
+            font-family: 'Old London';
+            text-align: center;
+            font-size: 14px;
+            color: #050505;
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+        .diploma-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: bold;
+            margin: 60px 0 30px;
+            color: #000000;
+        }
+        .awarded-by {
+            text-align: center;
+            font-size: 18px;
+            margin: 15px 0;
+        }
+        .university {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 15px 0 40px;
+            color: #000000;
+        }
+        .certification-text {
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 30px 60px;
+            color: #000000;
+        }
+        .signatures {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 40px;
+        }
+        .signature {
+            text-align: center;
+            margin: 15px 0;
+        }
+        .signature-line {
+            width: 300px;
+            margin: 0 auto;
+            border-bottom: 1px solid #333;
+            margin-bottom: 5px;
+        }
+        .signature-title {
+            font-size: 16px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .date {
+            text-align: center;
+            font-size: 16px;
+            margin-top: 30px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate">
+        <div class="border"></div>
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="heading">LYCEUM OF THE PHILIPPINES UNIVERSITY MANILA</div>
+        
+        <div class="diploma-title">DIPLOMA OF ACHIEVEMENT</div>
+        
+        <div class="awarded-by">Awarded by</div>
+        <div class="university">University of Blockchain Studies</div>
+        
+        <div class="certification-text">
+            This certifies that [Student Name] has successfully completed the course requirements for the degree of Blockchain Engineering with distinction.
+        </div>
+        
+        <div class="signatures">
+            <div class="signature">
+                <div class="signature-line"></div>
+                <div class="signature-title">Head of Department</div>
+            </div>
+            
+            <div class="signature">
+                <div class="signature-line"></div>
+                <div class="signature-title">Registrar</div>
+            </div>
+        </div>
+        
+        <div class="date">Issued on: November 28, 2024</div>
+    </div>
+</body>
+</html>

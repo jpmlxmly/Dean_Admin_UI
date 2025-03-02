@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Diploma Archives</title>
     <link rel="stylesheet" href="index.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Arial, sans-serif;
       }
 
       body {
@@ -35,14 +35,14 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px;
-        background-color: #ffffff;
+        background-image: linear-gradient(90deg, #35395e, #292d48);
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
       }
 
       .header h1 {
         font-size: 24px;
-        color: #333;
+        color: #ebebeb;
       }
 
         .mainDashboard p {
@@ -106,6 +106,7 @@
     margin-bottom: 5px;
     margin-top: 12px;
     margin-left: 10px;
+    align-items: center;
     }
     .db-header a {
     text-decoration: none;
@@ -129,21 +130,44 @@
     border: none;
     border-radius: 15px 0 0 15px;
     font-size: 0.9rem;
-    background-color: #e6e6e6b8;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
     outline: none;
     }
     .searchbtn {
     padding: 10px 15px;
     border: none;
     border-radius: 0 15px 15px 0;
-    background-color: #e6e6e6b8;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     color: #000000;
     cursor: pointer;
     }
     .searchbtn i {
     font-size: 17px;
     }
-    /*TABLE*/
+    .year-dropdown {
+      padding: 10px;
+      border: none;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+      background-color: #ffffff;
+      color: #292d48;
+      font-weight: 700;
+      outline: none;
+      margin-left: 8px;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+    .year-dropdown:hover {
+      background-color: #292d48;
+      color: #ffffff;
+      box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.2);
+      border-color: #007bff;
+      transition: background 0.3s ease;
+
+    }
     .table-school
     {
     width: 98%;
@@ -224,24 +248,21 @@
     </style>
   </head>
   <body>
-    <nav class="navbar">
-      <img src="logo.png" alt="Logo" />
-      <ul>
-        <li><a href="registrar_dashboard.html">Dashboard</a></li>
-        <li><a href="fillupform.html">Student Form</a></li>
-        <li><a class="active" href="dashboardcolleges.html">Archives</a></li>
-        <li><a href="dean.html">Sign up Dean</a></li>
-        <li><a href="upload-bchain.html">Blockchain Diploma Upload</a></li>
-        <li><a href="re.html">Diploma Request</a></li>
-        <li><a href="pending.html">Pending Accounts</a></li>
-      </ul>
-    </nav>
+    <div id="navbar-container"></div> <!--Navbar will be populated here-->
     <div class="mainDashboard">
       <div class="header">
         <h1>Diploma Archives</h1>
       </div>
         <div class ="db-header">
-            <p><a href="dashboardcolleges.html">COT</a> / <a href="dashboardyear.html">2018-2019</a></p>
+            <p><a href="dashboardcolleges.html">COT</a> / 
+              <select class="year-dropdown">
+                <option value="2018-2019" selected>2018-2019</option>
+                <option value="2019-2020">2019-2020</option>
+                <option value="2020-2021">2020-2021</option>
+                <option value="2021-2022">2021-2022</option>
+                <option value="2022-2023">2022-2023</option>
+              </select>
+            </p>
               <div class="searchcontainer">
                 <input type="text" placeholder="Search" class="search-input">
                 <button class="searchbtn">
@@ -254,11 +275,11 @@
           <table class="table-school" id="schoolTable">
               <thead>
                 <tr>
-                  <th>Last Name</th>
-                  <th>First Name</th>
-                  <th>Middle Name</th>
+                  <th>ID No.</th>
+                  <th>Name</th>
                   <th>Course</th>
                   <th>Date Graduated</th>
+                  <th>IPFS Hash</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -283,32 +304,33 @@
 <script>
     let userData = [
         {
-            lastName: "John",
-            firstName: "Patrick",
-            middleName: "Malay",
+            idnum: "2018-0001",
+            name: "John Patrick Malay",
             course: "BS Computer Science",
-            dateGraduated: "12/07/22"
+            dateGraduated: "12/07/22",
+            ipfsHash: "DFCD3454",
+
         },
         {
-            lastName: "John",
-            firstName: "Patrick",
-            middleName: "Malay",
+            idnum: "2018-0001",
+            name: "Reetu Singh",
             course: "BS Computer Science",
-            dateGraduated: "12/07/22"
+            dateGraduated: "16/04/22",
+            ipfsHash: "DFCD3454",
         },
         {
-          lastName: "John",
-            firstName: "Patrick",
-            middleName: "Malay",
+            idnum: "2018-0001",
+            name: "Nehemiah Damian",
             course: "BS Computer Science",
-            dateGraduated: "12/07/22"
+            dateGraduated: "09/08/22",
+            ipfsHash: "DFCD3454",
         },
         {
-          lastName: "John",
-            firstName: "Patrick",
-            middleName: "Malay",
+            idnum: "2018-0001",
+            name: "Juan Dela Cruz",
             course: "BS Computer Science",
-            dateGraduated: "12/07/22"
+            dateGraduated: "22/12/22",
+            ipfsHash: "DFCD3454",
         }
     ];
 
@@ -319,11 +341,11 @@
         userData.forEach((user, index) => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${user.lastName}</td>
-                <td>${user.firstName}</td>
-                <td>${user.middleName}</td>
+                <td>${user.idnum}</td>
+                <td>${user.name}</td>
                 <td>${user.course}</td>
                 <td>${user.dateGraduated}</td>
+                <td>${user.ipfsHash}</td>
                 <td class="action-buttons">
                     <button class="btn-view" onclick="viewDetails(${index})">View</button>
                 </td>
@@ -335,6 +357,14 @@
     function viewDetails(index) {
     // Example: Redirect to a details page, passing the index as a query parameter
     window.location.href = `archive-view.html?index=${index}`;
-}
+    }
+    
     document.addEventListener('DOMContentLoaded', renderTable);
+
+  fetch("/frontend/navbar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar-container").innerHTML = data;
+    })
+    .catch(error => console.error("Error loading navbar:", error));
   </script>

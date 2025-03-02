@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="/index.css"/>
     <style>
       * {
         margin: 0;
@@ -129,11 +129,14 @@
         background-color: transparent;
         border: 2px solid #0056d6;
         color: #0056d6;
-        padding: 8px 15px;
+        padding: 11px 15px;
         font-size: 14px;
         border-radius: 5px;
         cursor: pointer;
         transition: 0.3s;
+        text-decoration: none;
+        display: inline-block;
+        text-align: center;
       }
 
       .info .view-all:hover {
@@ -183,22 +186,21 @@
   </head>
   <body>
     <nav class="navbar">
-      <img src="logo.png" alt="Logo" />
+      <img src="/logo.png" alt="Logo" />
       <ul>
         <li><a class="active" href="#">Dashboard</a></li>
-        <li><a href="#">Grades</a></li>
-        <li><a href="#">Log Out</a></li>
+        <li><a href="/login.html">Log Out</a></li>
       </ul>
     </nav>
     <div class="main-content">
       <div class="header">
-        <h1>Welcome Dean [Name]</h1>
+        <h1>Welcome Dean!</h1>
       </div>
 
       <div class="pending-section">
         <div class="info">
           <h3>There are some envelopes that require your attention!</h3>
-          <button class="view-all">View All →</button>
+          <a href="deanview.html" class="view-all">View All →</a>
         </div>
         <div class="status">
           <div class="pending-count">

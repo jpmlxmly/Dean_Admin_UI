@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/students/index.css" />
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      body {
+        background-image: url(/rsc/bg5.png);
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="dashboardpage">
+      <main class="verifier-main">
+          <div class ="header"> 
+            <p>Welcome <b>Username!</b></p>
+            <div class="logout-button">
+                <a href="login-verifier.html">
+                    <span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+                    <span class="text"> Logout</span>
+                </a>
+            </div>
+          </div>
+          <div class="student-form">
+            <h2>Enter Alumni Details</h2>
+            <div class="inputBox-verifier"> 
+                <input type="text" required> <i>Alumni Name</i> 
+            </div> 
+            <div class="inputBox-verifier"> 
+                <select required>
+                    <option value="">Select Course</option>
+                    <option value="computer_science">BS Information Technology</option>
+                    <option value="data_science">BS Computer Science</option>
+                    <option value="cybersecurity">AB Multimedia Arts</option>
+                    <option value="software_engineering">BS Accountancy </option>
+                    <option value="artificial_intelligence">BS International Hospitality Management</option>
+                    <option value="information_technology">AB Foreign Service</option>
+                </select>
+                <i>Alumni Course</i> 
+            </div>
+            <div class="inputBox-verifier"> 
+                <input type="date" required min="1970-01-01" max="2024-12-31"> 
+                <i>Date of Graduation</i> 
+            </div>
+            <button type="submit" class="verify-btn" id="btn-verify">
+                <i class="fas fa-check-circle"></i> Verify
+            </button>
+          </div>
+          <!---Verification Modal-->
+          <div class="modal" id="verification-modal">
+          <div class="modal-dialog">
+            <div class="modal-ver">
+              <i class="fas fa-check-circle"></i> 
+              <h1>Verified</h1>
+            </div>
+            <div class="modal-header">
+              <h2>Search results for: Juan Dela Cruz</h2>
+              <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+              <div class="modal-cont">
+              <p><b>Name</b>: Juan Dela Cruz</p>
+              <p><b>Course</b>: BS Accountancy</p>
+              <p><b>Date of Graduation</b>: 08/22/2024</p>
+              </div>
+              <hr>
+              <div class="modal-cont">
+              <p><b>Name</b>: Juan Dela Cruz</p>
+              <p><b>Course</b>: BS Information Technology</p>
+              <p><b>Date of Graduation</b>: 07/11/2022</p>
+              </div>
+              <hr>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        var modal = document.getElementById("verification-modal");
+        var btn = document.getElementById("btn-verify");
+        var span = document.getElementsByClassName("close-modal")[0];
+
+        btn.onclick = function() {
+          modal.classList.add("show2");
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.classList.remove("show2");
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.classList.remove("show2"); 
+          }
+        }
+      </script>
+    </body>
+    
+</html>

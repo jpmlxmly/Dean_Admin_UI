@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="students/index.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <section class="forgot-password">
+        <div class="background">
+            <img src="rsc/block.png">
+        </div>
+        <div class="content">
+            <h1 style="font-size: 5rem; margin-right: 35px;">Create new password</h1>
+            <div class="header-row">
+                <div class="back-button">
+                    <a href="students/login.html">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </a>
+                </div>
+            </div>
+            <p style="margin-right: 45px;">Your new password must be different from other previous passwords.</p>
+            <div class="inputBox"> 
+                <input type="password" id="password" placeholder="Enter your password">
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('password')">
+                            <i class="fa-solid fa-eye"></i> <!-- Font Awesome icon -->
+                        </button>
+            </div> 
+            <div class="inputBox"> 
+                <input type="password" id="password2" placeholder="Confirm your password">
+                        <button type="button" class="toggle-password" onclick="togglePasswordVisibility('password2')">
+                            <i class="fa-solid fa-eye"></i> <!-- Font Awesome icon -->
+                        </button>
+            </div> 
+            <div class="submitBox"> 
+                <input type="submit" value="Reset Password" id="btn-submit"> 
+            </div>
+    </section>
+              <!---Modal-->
+              <div class="modal" id="verification-modal">
+                <div class="pass-modal-dialog">
+                  <div class="signup-header">
+                    <div class="header-cont">
+                    <i class="fa fa-user-plus"></i>
+                    <h2>Success</h2>
+                    </div>
+                    <span class="close-modal">&times;</span>
+                  </div>
+                  <div class="modal-body">
+                    <div class="modal-cont">
+                    <p>Your password has been successfully reset! You can now sign in to your account.</p>
+                    </div>
+                    <div class="loginBox"> 
+                        <a href="/student/login.html">
+                        <input type="submit" value="Log In"> 
+                        </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+</body>
+</html>
+<script>
+    var modal = document.getElementById("verification-modal");
+    var btn = document.getElementById("btn-submit");
+    var span = document.getElementsByClassName("close-modal")[0];
+
+    btn.onclick = function() {
+      modal.classList.add("show2");
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.classList.remove("show2");
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.classList.remove("show2"); 
+      }
+    }
+
+function togglePasswordVisibility(inputId) {
+    const passwordField = document.getElementById(inputId);
+    const toggleButton = passwordField.nextElementSibling;
+    const toggleIcon = toggleButton.querySelector('i');
+
+    if (passwordField.type === 'password') {
+        passwordField.type = 'text';
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+    } else {
+        passwordField.type = 'password';
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+    }
+}
+</script>

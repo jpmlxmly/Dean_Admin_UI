@@ -10,7 +10,6 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Arial, sans-serif;
       }
 
       body {
@@ -34,30 +33,31 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px;
-        background-color: #ffffff;
+        background-image: linear-gradient(90deg, #35395e, #292d48);
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
       }
 
       .header h1 {
         font-size: 24px;
-        color: #333;
+        color: #ebebeb;
       }
 
       .header a {
         padding: 10px 20px;
         font-size: 16px;
-        color: #fff;
-        background-color: #007bff;
+        background-color: #fff;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        transition: background 0.3s ease;
         text-decoration: none;
       }
 
       .header a:hover {
-        background-color: #0056b3;
+        background-color: #303455;
+        color: #f8f8f8;
+        box-shadow: inset 0 0 0 1.5px #f8f8f8;
+        transition: background 0.3s ease;      
       }
 
       .dashboard-section {
@@ -88,17 +88,36 @@
 
       .dashboard-card button {
         padding: 10px 15px;
+        margin-bottom: 15px;
         font-size: 14px;
         color: #fff;
-        background-color: #007bff;
+        background-color: #303455;
         border: none;
         border-radius: 5px;
         cursor: pointer;
         transition: background 0.3s ease;
       }
 
-      .dashboard-card button:hover {
-        background-color: #0056b3;
+      .envelope-btn
+      {
+        margin-top: 20px;
+      }
+
+      .dashboard-card a {
+        padding: 12px 20px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #303455;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        text-decoration: none;
+        margin-bottom: 10px;
+      }
+
+      .dashboard-card a:hover, .dashboard-card button:hover {
+        background-color: #359ab9;
       }
 
       /* Pending Section */
@@ -126,8 +145,8 @@
 
       .info .view-all {
         background-color: transparent;
-        border: 2px solid #0056d6;
-        color: #0056d6;
+        border: 2px solid #359ab9;
+        color: #359ab9;
         padding: 8px 15px;
         font-size: 14px;
         border-radius: 5px;
@@ -136,7 +155,7 @@
       }
 
       .info .view-all:hover {
-        background-color: #0056d6;
+        background-color: #359ab9;
         color: #fff;
       }
 
@@ -181,18 +200,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar">
-      <img src="logo.png" alt="Logo" />
-      <ul>
-        <li><a href="registrar_dashboard.html">Dashboard</a></li>
-        <li><a href="fillupform.html">Student Form</a></li>
-        <li><a class="active" href="dashboardcolleges.html">Archives</a></li>
-        <li><a href="dean.html">Sign up Dean</a></li>
-        <li><a href="upload-bchain.html">Blockchain Diploma Upload</a></li>
-        <li><a href="re.html">Diploma Request</a></li>
-        <li><a href="pending.html">Pending Accounts</a></li>
-      </ul>
-    </nav>
+    <div id="navbar-container"></div> <!--Navbar will be populated here-->
     <div class="main-content">
       <div class="header">
         <h1>Welcome John Smith</h1>
@@ -228,9 +236,20 @@
         <div class="dashboard-card">
           <h3>Sent for Signing</h3>
           <p>No sent envelopes.</p>
-          <button>Create New Envelope</button>
+          <div class="envelope-btn">
+          <a href="new_doc.html">Create New Envelope</a>
+        </div>
         </div>
       </div>
     </div>
   </body>
 </html>
+<script>
+  //fetches navbar
+  fetch("/frontend/navbar.html")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar-container").innerHTML = data;
+    })
+    .catch(error => console.error("Error loading navbar:", error));
+</script>
