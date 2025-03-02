@@ -215,8 +215,8 @@
     </body>
   </html>
   <script>
-    fetch("/frontend/navbar.html")
-      .then(response => response.text())
+    fetch("navbar.html")
+    .then(response => response.text())
       .then(data => {
         document.getElementById("navbar-container").innerHTML = data;
       })
