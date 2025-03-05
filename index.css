@@ -6,7 +6,7 @@
     border-radius: 0px 45px 0px 0px;
     width: 250px;
     height: 100%;
-    background-image: linear-gradient(180deg, #35395e, #292d48);
+    background-image: linear-gradient(180deg, #a92426, #e94446);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -48,7 +48,7 @@
   }
 
   .navbar ul li a:hover {
-    background-color: #2b2d44;
+    background-color: #442b2b;
     color: #f4f4f4;
     width: 100%;
     border-radius: 10px 0 0 0;
@@ -63,4 +63,33 @@
 
   .navbar a.active{
     color: #0053ad;
+  }
+
+  .navbar .dropdown {
+    position: relative;
+    width: 90%;
+  }
+
+  .navbar .submenu {
+    display: none;
+    position: static;
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+
+  .navbar .submenu li {
+    width: 100%;
+    margin: 0;
+  }
+
+  .navbar .submenu li a {
+    padding: 10px 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar .submenu li a:hover {
+    background-color: #363131;
   }

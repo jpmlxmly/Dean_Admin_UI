@@ -39,7 +39,7 @@
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
       }
-
+      
       .header h1 {
         font-size: 24px;
         color: #ebebeb;
@@ -270,6 +270,7 @@
                   <th>ID Number</th>
                   <th>Program</th>
                   <th>Date Graduated</th>
+                  <th>Payment</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -298,21 +299,24 @@
             email: "john.malay@lpunetwork.edu.ph",
             idNum: "2021-1-00786",
             course: "BS Computer Science",
-            dateGraduated: "12/07/22"
+            dateGraduated: "12/07/22",
+            payment: "#"
         },
         {
           name: "Reetu Singh",
             email: "reetu.singh@lpunetwork.edu.ph",
             idNum: "2021-1-00102",
             course: "BS Computer Science",
-            dateGraduated: "12/07/22"
+            dateGraduated: "12/07/22",
+            payment: "#"         
         },
         {
           name: "Nehemiah Damian",
             email: "nehemiah.damian@lpunetwork.edu.ph",
             idNum: "2021-1-00110",
             course: "BS Computer Science",
-            dateGraduated: "12/07/22"
+            dateGraduated: "12/07/22",
+            payment: "#"
         }
     ];
 
@@ -328,6 +332,7 @@
                 <td>${user.idNum}</td>
                 <td>${user.course}</td>
                 <td>${user.dateGraduated}</td>
+                <td><a href="${user.payment}" target="_blank">View Payment</a></td>
                 <td class="action-buttons">
                     <button class="btn-accept" onclick="approveUser(${index})">Accept</button>
                     <button class="btn-decline" onclick="declineUser(${index})">Decline</button>

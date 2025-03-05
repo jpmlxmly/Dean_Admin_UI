@@ -44,12 +44,13 @@
       }
 
       .form-container {
-        width: 800px;
+        width: 100%;
+        max-width: 800px;
         margin: 0 auto;
         background-color: #ffffff;
         border: 1px solid #e0e0e0;
         border-radius: 10px;
-        padding: 30px;
+        padding: 50px 30px;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
       }
 
@@ -140,14 +141,6 @@
             </option>
           </select>
 
-          <label for="publicKey">Generated Public Key</label>
-          <input
-            type="text"
-            id="publicKey"
-            name="publicKey"
-            placeholder="Automatically generated"
-            disabled
-          />
           <div class="btn-submit">
             <button type="submit">Register</button>
           </div>

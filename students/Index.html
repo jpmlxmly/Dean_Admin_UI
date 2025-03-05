@@ -32,8 +32,14 @@
             </a>
           </div>
           <div class="nav-item">
+            <a href="#">
+              <span class="icon"><i class="fas fa-gear"></i></span>
+              <span class="text">SETTINGS</span>
+            </a>
+          </div>
+          <div class="nav-item">
             <a href="login.html">
-              <span class="icon"><i class="fas fa-sign-out-alt" style="margin-top: 350px;"></i></span>
+              <span class="icon"><i class="fas fa-sign-out-alt" style="margin-top: 250px;"></i></span>
               <span class="text">LOGOUT</span>
             </a>
           </div>
@@ -61,43 +67,65 @@
             </div>
             <div class="modal-body">
               <form id="request-form">
-                <div class="form-group">
-                  <label for="name">Full Name</label>
-                  <input type="text" id="name" name="name" required placeholder="Enter your full name">
-                </div>
-                
-                <div class="form-group">
-                  <label for="id-number">Student ID Number</label>
-                  <input type="text" id="id-number" name="id-number" required placeholder="Enter your ID number">
-                </div>
-
-                <div class="form-group">
-                  <label for="grad">Date of Graduation</label>
-                  <input type="date" id="grad" name="grad" required>
-                </div>
-                
-                <div class="form-group">
-                  <label for="email">Email Address</label>
-                  <input type="email" id="email" name="email" required placeholder="Enter your email address">
-                </div>
-                
-                <div class="form-group">
-                  <label for="phone">Contact Number</label>
-                  <input type="tel" id="phone" name="phone" required placeholder="Enter your contact number">
-                </div>
-
-                <div class="form-group file-upload">
-                  <label for="file-upload">Upload Affidavit of Loss</label>
-                  <div class="file-upload-container">
-                    <input type="file" id="file-upload" name="file-upload" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none;">
-                    <button type="button" class="file-upload-btn">
-                      <i class="fas fa-cloud-upload-alt"></i> Choose Files
-                    </button>
-                    <span class="file-upload-text">No file chosen</span>
+                <div class="modal-form-row">
+                  <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Enter your full name">
                   </div>
-                  <small class="file-upload-help">Accepted formats: PDF, DOC, DOCX, JPG, PNG</small>
+                  
+                  <div class="form-group">
+                    <label for="id-number">Student ID Number</label>
+                    <input type="text" id="id-number" name="id-number" required placeholder="Enter your ID number">
+                  </div>
                 </div>
-                
+        
+                <div class="modal-form-row">
+                  <div class="form-group">
+                    <label for="grad">Date of Graduation</label>
+                    <input type="date" id="grad" name="grad" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email address">
+                  </div>
+                </div>
+        
+                <div class="modal-form-row">
+                  <div class="form-group">
+                    <label for="phone">Contact Number</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="Enter your contact number">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="affidavit-upload">Upload Affidavit of Loss</label>
+                    <div class="file-upload-container">
+                      <input type="file" id="affidavit-upload" name="affidavit-upload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none;">
+                      <button type="button" class="file-upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i> Choose Files
+                      </button>
+                      <span class="file-upload-text">No file chosen</span>
+                    </div>
+                    <small class="file-upload-help">Accepted formats: PDF, DOC, DOCX, JPG, PNG</small>
+                  </div>
+                </div>
+                  
+                  <div class="form-group">
+                    <label for="affidavit-upload">Upload Affidavit of Loss</label>
+                    <div class="file-upload-container">
+                      <input type="file" id="affidavit-upload" name="affidavit-upload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" style="display:none;">
+                      <button type="button" class="file-upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i> Choose Files
+                      </button>
+                      <span class="file-upload-text">No file chosen</span>
+                    </div>
+                    <small class="file-upload-help">Accepted formats: PDF, DOC, DOCX, JPG, PNG</small>
+                  </div>
+                </div>
+        
+     
+
+
                 <div class="form-actions">
                   <button type="button" class="cancel-btn">Cancel</button>
                   <button type="submit" class="submit-btn">Submit Request</button>
