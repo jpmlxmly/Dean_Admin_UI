@@ -6,7 +6,8 @@
     border-radius: 0px 45px 0px 0px;
     width: 250px;
     height: 100%;
-    background-image: linear-gradient(180deg, #a92426, #e94446);
+    /*background-image: linear-gradient(180deg, #bb1b31, #A91428 25%);*/
+    background-image: linear-gradient(180deg, #a10c0c, #8C0001 25%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -57,12 +58,15 @@
   }
 
   .navbar ul li a:hover i {
-    color: #359ab9;
+    color: #b94f35;
     transition: background 0.3s ease, color 0.3s ease;
   }
 
   .navbar a.active{
-    color: #0053ad;
+    color: #f6f6f6;
+    font-weight: 700;
+    border-radius: 10px 0 0 0;
+    background-color: #442b2b3d;
   }
 
   .navbar .dropdown {
@@ -76,6 +80,13 @@
     width: 100%;
     margin-top: 10px;
     padding-left: 20px;
+  }
+
+  .navbar .submenu-active {
+        position: static;
+    width: 101%;
+    margin-top: 5px;;
+    margin-left: -2.2%;
   }
 
   .navbar .submenu li {
@@ -92,4 +103,10 @@
 
   .navbar .submenu li a:hover {
     background-color: #363131;
+  }
+
+
+  /* Make the Settings item non-clickable if desired */
+  .navbar ul li a[href="#"] {
+    cursor: default;
   }

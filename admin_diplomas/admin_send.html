@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/index.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        background-color: #f7faff;
+      }
+
+      /* Main Content */
+      .main-content {
+        flex-grow: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .welcome-banner {
+        background-image: linear-gradient(-90deg, #be1010, #8C0001);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .welcome-banner h1 {
+        font-size: 24px;
+      }
+
+      .card-container {
+        width: 40%;
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); 
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .dropdown-container {
+        position: relative;
+        display: inline-block;
+        }
+
+        .dropdown-btn {
+        background-color: white;
+        border: 1px solid #D0D5DD;
+        border-radius: 10px;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        color: #333;
+        width: 100%; 
+        box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+        }
+
+        .dropdown-btn:after {
+        content: '';
+        display: inline-block;
+        margin-left: 5px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #333;
+        }
+
+        .dropdown-list {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 100%;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 5px;
+        overflow: hidden;
+        top: 100%;
+        margin-top: 5px;
+        }
+
+        .dropdown-list.show {
+        display: block;
+        }
+
+        .dropdown-item {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+
+        .dropdown-item:hover {
+        background-color: #f1f1f1;
+        }
+
+        .year-input {
+        width: 100%;
+        padding: 10px 15px;
+        border: 1px solid #D0D5DD;
+        border-radius: 10px;
+        background-color: white;
+        color: #333;
+        appearance: none;
+        cursor: text;
+        font-size: 16px;
+        position: relative;
+        box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+        }
+
+      .search-btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #d0253c;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .search-btn:hover {
+        background-color: #A91428;
+      }
+
+      /* Responsive Styles */
+      @media screen and (max-width: 1024px) {
+        .card-container {
+          width: 85%;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .card-container {
+          width: 90%;
+          padding: 20px;
+        }
+      }
+
+      @media screen and (max-width: 576px) {
+        .card-container {
+          width: 100%;
+          padding: 15px;
+        }
+      }
+
+      @media screen and (max-height: 600px) {
+        .main-content {
+          gap: 15px;
+        }
+        
+        .welcome-banner {
+          padding: 15px;
+        }
+        
+        .card-container {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar-container"></div> <!--Navbar will be populated here-->
+    <div class="main-content">
+      <div class="welcome-banner">
+        <h1>Send Diplomas</h1>
+      </div>
+      <div class="card-container">
+        <div class="dropdown-container">
+          <select class="dropdown-btn year-dropdown">
+            <option>Select College</option>
+            <option>CAS</option>
+            <option>COT</option>
+            <option>CITHM</option>
+            <option>CBA</option>
+            <option>CIR</option>
+          </select>
+        </div>
+        
+        <div class="year-container">
+          <input type="number" class="year-input" placeholder="Enter Year (e.g., 2024-2025)">
+        </div>
+        
+        <a href="admin_send1.html" class="search-btn">Search</a>
+      </div>
+    </div>
+  </body>
+  <script>
+  //fetches navbar
+  fetch("/navbar.html")
+  .then(response => response.text())
+    .then(data => {
+      document.getElementById("navbar-container").innerHTML = data;
+    })
+    .catch(error => console.error("Error loading navbar:", error));
+  </script>
+</html>

@@ -74,7 +74,7 @@
   width: 105%;
 }
 
-.sign-up .forms input[type=text], .sign-up .forms input[type=password]{
+.sign-up .forms input[type=text], .sign-up .forms input[type=password], .forms input[type=date]{
   width: 100%;
   height: 60px;
   padding: 20px 20px 20px 50px;
@@ -89,16 +89,16 @@
   transition: all 0.3s ease;
 }
 
-.sign-up .forms input[type=text]::placeholder, .sign-up .forms input[type=password]::placeholder {
+.sign-up .forms input[type=text]::placeholder, .sign-up .forms input[type=password]::placeholder, .forms input[type=date]::placeholder {
   color: #000000;
 }
 
-.sign-up .forms input[type=text]:focus, .sign-up .forms input[type=password]:focus {
+.sign-up .forms input[type=text]:focus, .sign-up .forms input[type=password]:focus, .forms input[type=date]:focus {
   box-shadow: 0px 0px 0px 3px rgba(139, 14, 14, 0.3);
   transform: translateY(-2px);
 }
 
-.sign-up .forms input[type=text]:hover, .sign-up .forms input[type=password]:hover{
+.sign-up .forms input[type=text]:hover, .sign-up .forms input[type=password]:hover, .forms input[type=date]:hover {
   background-color: #fff;
 }
 
@@ -141,12 +141,8 @@
   margin-top: -2%;
   display: flex;
   justify-content: center;
-  margin-left: 50%;
-}
-
-.submitBox a {
-  width: 100%;
   max-width: 700px;
+
 }
 
 .submitBox input {
@@ -175,6 +171,84 @@
 .submitBox input:active {
   transform: translateY(0);
 }
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.show2 {
+    display: flex;
+}
+
+.pass-modal-dialog {
+    background-color: #fff;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+}
+
+.signup-header {
+    background-color: #8b0e0e;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-cont {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-cont i {
+    font-size: 1.5rem;
+}
+
+.signup-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.close-modal {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.close-modal:hover {
+    color: #ff6b6b;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.modal-cont {
+    text-align: center;
+    color: #202020;
+}
+
+.modal-cont p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
 
 @media (max-width: 1250px) {
   .sign-up .background{
@@ -231,17 +305,22 @@
             <div class="forms">
                 <div class="form-group">
                     <i class="fa fa-user input-icon"></i>
-                    <input type="text" name="name" placeholder="Enter your name">
+                    <input type="text" name="name" placeholder="Enter your full name">
                 </div>
-                
+                <div class="user-req">
                 <div class="form-group">
                     <i class="fa fa-envelope input-icon"></i>
                     <input type="text" name="email" placeholder="Enter your e-mail">
                 </div>
+                <div class="form-group">
+                    <i class="fa fa-calendar input-icon"></i>
+                    <input type="date" name="date" placeholder="Enter date of birth">
+                </div>
+            </div>
                 
                 <div class="form-group">
                     <i class="fa fa-id-card input-icon"></i>
-                    <input type="text" name="idNum" placeholder="Enter your ID number">
+                    <input type="text" name="idNum" placeholder="Enter your Student ID number">
                 </div>
                 
                 <div class="user-req">
@@ -278,27 +357,85 @@
                 </div>
             </div>
             <div class="submitBox"> 
-                <a href="login.html">
-                <input type="submit" value="Register"> 
+                <input type="submit" value="Submit" id="btn-submit"> 
                 </a>
             </div>
         </div>
+            <!-- Modal -->
+      <div class="modal" id="signup-modal">
+        <div class="pass-modal-dialog">
+            <div class="signup-header">
+                <div class="header-cont">
+                    <i class="fa fa-user-plus"></i>
+                    <h2>Sign-up Complete!</h2>
+                </div>
+                <span class="close-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="modal-cont">
+                    <p><b>Sign-Up Successfully!</b> <br>You can now sign</p>
+                </div>
+            </div>
+        </div>
+    </div>
     </section>
 </body>
 </html>
 <script>
-function togglePasswordVisibility(fieldId, iconId) {
-    const passwordField = document.getElementById(fieldId);
-    const toggleIcon = document.getElementById(iconId);
+    //SUBMIT BTN
+    var modal = document.getElementById("signup-modal");
+            var btn = document.getElementById("btn-submit");
+            var span = document.getElementsByClassName("close-modal")[0];
 
-    if (passwordField.type === 'password') {
-        passwordField.type = 'text';
-        toggleIcon.classList.remove('fa-eye');
-        toggleIcon.classList.add('fa-eye-slash');
-    } else {
-        passwordField.type = 'password';
-        toggleIcon.classList.remove('fa-eye-slash');
-        toggleIcon.classList.add('fa-eye');
+            btn.onclick = function() {
+                modal.classList.add("show2");
+            }
+
+            span.onclick = function() {
+                modal.classList.remove("show2");
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.classList.remove("show2"); 
+                }
+            }
+
+
+    function togglePasswordVisibility(fieldId, iconId) {
+        const passwordField = document.getElementById(fieldId);
+        const toggleIcon = document.getElementById(iconId);
+
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            toggleIcon.classList.remove('fa-eye');
+            toggleIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            toggleIcon.classList.remove('fa-eye-slash');
+            toggleIcon.classList.add('fa-eye');
+        }
     }
-}
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const dateInput = document.querySelector('input[type="date"]');
+
+        // Apply a placeholder effect
+        dateInput.addEventListener("focus", function() {
+            this.type = "date"; // Ensure it stays a date field
+        });
+
+        dateInput.addEventListener("blur", function() {
+            if (!this.value) {
+                this.type = "text"; // Change back to text if no date is selected
+                this.placeholder = "Enter date of birth"; // Restore the placeholder
+            }
+        });
+
+        // Initialize placeholder if empty
+        if (!dateInput.value) {
+            dateInput.type = "text";
+            dateInput.placeholder = "Enter date of birth";
+        }
+});
 </script>

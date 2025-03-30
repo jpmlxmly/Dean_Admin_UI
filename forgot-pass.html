@@ -6,6 +6,124 @@
     <title>Forgot Password</title>
     <link rel="stylesheet" href="students/index.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .back-button a{
+    color: #EDEDED;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    font-size: 18px;
+    }
+    .back-button {
+        margin-top: -2%;
+    }
+    .content .inputBox input[type=text] {
+        width: 100%;
+        height: 60px;
+        padding: 20px 20px 20px 50px;
+        background-color: rgb(255, 255, 255);
+        box-sizing: border-box;
+        border: none;
+        border-radius: 15px;
+        color: #202020;
+        font-size: 17px;
+        outline: none;
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    .content .inputBox input[type=text]::placeholder{
+      color: #000000;
+    }
+    .content .inputBox input[type=text]:hover {
+    background-color: white;
+    }
+    /* Modal styles */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal.show2 {
+        display: flex;
+    }
+
+    .pass-modal-dialog {
+        background-color: #fff;
+        border-radius: 15px;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        overflow: hidden;
+    }
+
+    .signup-header {
+        background-color: #8b0e0e;
+        color: #fff;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header-cont {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header-cont i {
+        font-size: 1.5rem;
+    }
+
+    .signup-header h2 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+
+    .close-modal {
+        color: #fff;
+        font-size: 1.8rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .close-modal:hover {
+        color: #ff6b6b;
+    }
+
+    .modal-body {
+        padding: 40px;
+    }
+
+    .modal-cont {
+        text-align: center;
+        color: #202020;
+    }
+
+    .modal-cont p {
+        font-size: 1.2rem;
+        line-height: 1.5;
+    }
+    </style>
 </head>
 <body>
     <section class="forgot-password">
@@ -21,8 +139,10 @@
                     </a>
                 </div>
             </div>
-            <p>Enter the email address you used when you joined 
-            and we’ll send you instructions to meet your password.</p>
+            <div class="email-box">
+            Enter the email address you used when you joined 
+            and we’ll send you instructions to meet your password.
+          </div>
             <div class="inputBox"> 
                 <input type="text" name="email" placeholder="Enter your email address">
             </div> 
@@ -31,24 +151,27 @@
             </div>
         </div>
     </section>
-          <!---Modal-->
-          <div class="modal" id="verification-modal">
-            <div class="pass-modal-dialog">
-              <div class="modal-header">
-                <h2>Kindly check your email</h2>
-                <span class="close-modal">&times;</span>
-              </div>
-              <div class="modal-body">
-                <div class="modal-cont">
-                <p>We have sent a password recovery instructions to your email. Thank you so much!</p>
+            <!-- Modal -->
+      <div class="modal" id="signup-modal">
+        <div class="pass-modal-dialog">
+            <div class="signup-header">
+                <div class="header-cont">
+                    <i class="fa fa-user-plus"></i>
+                    <h2>Kindly check your email!</h2>
                 </div>
-              </div>
+                <span class="close-modal">&times;</span>
             </div>
-          </div>
+            <div class="modal-body">
+                <div class="modal-cont">
+                    <p>We have sent a password recovery instructions to your email. Thank you so much!</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 <script>
-        var modal = document.getElementById("verification-modal");
+        var modal = document.getElementById("signup-modal");
         var btn = document.getElementById("btn-submit");
         var span = document.getElementsByClassName("close-modal")[0];
 

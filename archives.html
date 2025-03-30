@@ -35,7 +35,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px;
-        background-image: linear-gradient(90deg, #35395e, #292d48);
+        background-image: linear-gradient(-90deg, #be1010, #8C0001);
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
       }
@@ -99,8 +99,8 @@
       }
       /*HEADER*/
     .db-header {
-    display: flex; 
-    justify-content: end; 
+    display: flex;
+    justify-content: space-between; 
     width: 98%; 
     font-size: 1.5rem;
     margin-bottom: 5px;
@@ -142,9 +142,32 @@
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     color: #000000;
     cursor: pointer;
+    margin-right: 5mm;
     }
     .searchbtn i {
     font-size: 17px;
+    }
+
+    .print-button {
+      display: flex;
+      width: 98%;
+    }
+
+    .printbtn{
+      margin-left: auto;
+      padding: 7px 30px;
+      font-size: 16px;
+      background-color: white;
+      color: #d33139;
+      border: 1px solid #d33139;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .printbtn:hover {
+      background-color: #d33139;
+      color: white;
     }
     .year-dropdown {
       padding: 10px;
@@ -156,17 +179,15 @@
       color: #292d48;
       font-weight: 700;
       outline: none;
-      margin-left: 8px;
-      margin-right: 20px;
+      margin-right: 5px;
       cursor: pointer;
     }
     .year-dropdown:hover {
-      background-color: #292d48;
+      background-color: #a92426;
       color: #ffffff;
       box-shadow: 0px 0px 8px rgba(0, 123, 255, 0.2);
       border-color: #007bff;
       transition: background 0.3s ease;
-
     }
     .table-school
     {
@@ -187,7 +208,7 @@
     }
 
     .table-school td, .table-school th {
-    padding: 20px;
+    padding: 16px;
     }
 
     .table-school tr
@@ -254,7 +275,15 @@
         <h1>Diploma Archives</h1>
       </div>
         <div class ="db-header">
-            <p><a href="dashboardcolleges.html">COT</a> / 
+          <div class="dropdowns">
+            <select class="year-dropdown">
+              <option value="COT" selected>COT</option>
+              <option value="CAS">CAS</option>
+              <option value="CITHM">CITHM</option>
+              <option value="CIR">CIR</option>
+              <option value="CAS">CAS</option>
+            </select>
+              / 
               <select class="year-dropdown">
                 <option value="2018-2019" selected>2018-2019</option>
                 <option value="2019-2020">2019-2020</option>
@@ -262,14 +291,19 @@
                 <option value="2021-2022">2021-2022</option>
                 <option value="2022-2023">2022-2023</option>
               </select>
-            </p>
+            </div>
               <div class="searchcontainer">
                 <input type="text" placeholder="Search" class="search-input">
                 <button class="searchbtn">
                   <i class="fas fa-search"></i>
                 </button>
+                <i class="fa-solid fa-filter"></i>
               </div>
-            <i class="fa-solid fa-filter"></i>
+        </div>
+        <div class="print-button">
+          <button class="printbtn">
+            <i class="fa-solid fa-print"></i> Print Report
+          </button>
         </div>
         <div class="db-table">
           <table class="table-school" id="schoolTable">

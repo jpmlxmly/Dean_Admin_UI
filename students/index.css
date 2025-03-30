@@ -521,11 +521,11 @@ body {
 .student-form {
   background: #ebeef2;
   border-radius: 15px;
-  padding: 40px;
+  padding: 25px 20px;
   width: 90%;
-  max-width: 600px;
-  margin-top: 12vh;
-  margin-left: -25px;
+  max-width: 650px;
+  margin-top: 8vh;
+  margin-left: -55px;
   align-items: start;
 }
 
@@ -678,7 +678,7 @@ section .signin .content .form .inputBox
   position: relative;
   width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 }
 section .signin .content .form .inputBox input 
 {
@@ -749,13 +749,10 @@ section .signin .content .form .loginBox input:active
   background-image: url(/rsc/bg2.png);
   background-size: cover;
   background-position: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
   overflow: hidden;
   display: flex;
-  position: relative;
   align-items: flex-start;
-  justify-content: center;
   padding-left: 10%;
 }
 .forgot-password .background, .sign-up .background{
@@ -773,18 +770,20 @@ section .signin .content .form .loginBox input:active
 }
 .forgot-password .content
 {
+  margin-left: 10%;
   padding-top: 5%;
   color: #EDEDED;
   position: relative;
-  text-align: left;
   z-index: 1;
-  max-width: 800px; 
+  max-width: 950px;
 }
+
 .forgot-password .content h1 {
-  font-size: 7.5rem;
-  line-height: 85%;
+  font-size: 5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  align-items: center;
 }
-.forgot-password .content p {
+.forgot-password .email-box {
   font-size: 25px;
 }
 .forgot-password .submitBox, .sign-up .submitBox {

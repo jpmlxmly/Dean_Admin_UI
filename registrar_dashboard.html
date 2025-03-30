@@ -33,7 +33,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 20px;
-        background-image: linear-gradient(-90deg, #E43C3F, #a92426);
+        background-image: linear-gradient(-90deg, #be1010, #8C0001);
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
       }
@@ -45,6 +45,7 @@
 
       .header a {
         padding: 10px 20px;
+        color: #a92426;
         font-size: 16px;
         background-color: #fff;
         border: none;
@@ -54,7 +55,7 @@
       }
 
       .header a:hover {
-        background-color: #303455;
+        background-color: transparent;
         color: #f8f8f8;
         box-shadow: inset 0 0 0 1.5px #f8f8f8;
         transition: background 0.3s ease;      
@@ -62,7 +63,7 @@
 
       .dashboard-section {
         display: flex;
-        gap: 20px;
+        gap: 15px;
       }
 
       .dashboard-card {
@@ -70,8 +71,17 @@
         background-color: #ffffff;
         border: 1px solid #e0e0e0;
         border-radius: 10px;
-        padding: 20px;
+        padding: 140px 20px;
+        max-height: 500px;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .dashboard-section .dashboard-card:first-child {
+        flex: 1.5; /* This will make the first card twice as wide */
+      }
+
+      .dashboard-section .dashboard-card:last-child {
+        flex: 1; /* This keeps the second card at its original width */
       }
 
       .dashboard-card h3 {
@@ -121,15 +131,31 @@
       }
 
       /* Pending Section */
-      .pending-section {
+      .stats-container {
         width: 100%;
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        padding: 20px;
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        gap: 10px;
+      }
+
+      .stats-card {
+        flex: 1;
+        background-color: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 60px 20px;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+
+      .stats-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 7px; 
+      background-color: #CE3435;
+      border-radius: 0px 0px 10px 10px;
       }
 
       .pending-section .info {
@@ -204,41 +230,24 @@
     <div class="main-content">
       <div class="header">
         <h1>Welcome John Smith</h1>
-        <a href="new_doc.html">+ New Envelope</a>
       </div>
 
-      <div class="pending-section">
-        <div class="info">
-          <h3>There are some envelopes that require your attention!</h3>
-          <button class="view-all">View All →</button>
+      <div class="stats-container">
+        <div class="stats-card">
         </div>
-        <div class="status">
-          <div class="pending-count">
-            <span>1</span>
-            <div class="badge">Pending</div>
-          </div>
-          <div class="summary">
-            <p>No created envelopes</p>
-            <span>✓</span>
-          </div>
-          <div class="summary">
-            <p>No signed envelopes</p>
-            <span>✓</span>
-          </div>
+        <div class="stats-card">
+          
+        </div>
+        <div class="stats-card">
+          
         </div>
       </div>
       <div class="dashboard-section">
         <div class="dashboard-card">
-          <h3>Requires Your Attention</h3>
-          <p>Confirmation of Signatures</p>
-          <button>Review</button>
+
         </div>
         <div class="dashboard-card">
-          <h3>Sent for Signing</h3>
-          <p>No sent envelopes.</p>
-          <div class="envelope-btn">
-          <a href="new_doc.html">Create New Envelope</a>
-        </div>
+
         </div>
       </div>
     </div>

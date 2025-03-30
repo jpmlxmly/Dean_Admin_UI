@@ -1,0 +1,523 @@
+      /* Main Content */
+      .main-content {
+        flex-grow: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        overflow-y: auto;
+        position: relative;
+      }
+      
+      .header-banner {
+        background-image: linear-gradient(-90deg, #be1010, #8C0001);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      
+      .header-banner h1 {
+        font-size: clamp(18px, 4vw, 24px);
+      }
+      
+      .content-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .left-panel {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .right-panel {
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        display: flex;
+        flex-direction: column;
+        max-height: none;
+        overflow: hidden;
+      }
+      
+      .diploma-container {
+        flex: 1;
+        overflow-y: auto;
+        padding-right: 5px;
+      }
+      
+      .btn-container {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+      
+      .signature-section {
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        display: none;
+      }
+      
+      .signature-section h3 {
+        margin-bottom: 15px;
+        color: #333;
+      }
+      
+      .upload-area {
+        border: 2px dashed #d0253c;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 10px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+      
+      .upload-area:hover {
+        background-color: rgba(208, 37, 60, 0.05);
+      }
+      
+      .upload-area i {
+        color: #d0253c;
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      
+      .upload-area p {
+        color: #d0253c;
+        font-weight: bold;
+      }
+      
+      .format-text {
+        font-size: 12px;
+        color: #666;
+      }
+      
+      .esign-btn, .process-btn, .digitally-sign-btn {
+        width: 100%;
+        font-weight: bold;
+        background-color: #555;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+      }
+      
+      .process-btn {
+        background-color: white;
+        color: #d33139;
+        border: 1px solid #d33139;
+        padding: 15px;
+      }
+      
+      .process-btn:hover {
+        background-color: rgba(211, 49, 57, 0.05);
+      }
+      
+      .esign-btn {
+        background-color: #d33139;
+        color: white;
+      }
+      
+      .esign-btn:disabled {
+        background-color: #cccccc;
+        color: #666666;
+        cursor: not-allowed;
+      }
+      
+      .esign-btn:not(:disabled):hover {
+        background-color: #A91428;
+      }
+      
+      .digitally-sign-btn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        display: none;
+        padding: 15px;
+      }
+      
+      .digitally-sign-btn:hover {
+        background-color: #45a049;
+      }
+      
+      /* Diploma list styling */
+      .diploma-list-header {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-bottom: 20px;
+      }
+      
+      .diploma-list-header h2 {
+        font-size: clamp(16px, 3vw, 20px);
+      }
+      
+      .search-bar {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+      
+      .search-input {
+        padding: 8px 15px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        width: 100%;
+        font-size: 14px;
+      }
+      
+      .search-input:focus {
+        outline: none;
+        border-color: #d33139;
+        box-shadow: 0 0 0 2px rgba(211, 49, 57, 0.1);
+      }
+      
+      .entries-selector {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      
+      .entries-selector select {
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 0 5px;
+      }
+      
+      .diploma-items {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .diploma-item {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      
+      .diploma-item img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+      }
+      
+      .next-btn {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        font-weight: bold;
+        background-color: #d33139;
+        color: white;
+        border: none;
+        padding: 15px 70px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        text-align: center;
+        cursor: pointer;
+        display: none;
+        z-index: 100;
+        box-shadow: 0 4px 10px rgba(211, 49, 57, 0.3);
+      }
+      
+      .next-btn:hover {
+        background-color: #A91428;
+        box-shadow: 0 6px 15px rgba(211, 49, 57, 0.4);
+      }
+      
+      .signature-uploaded {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        color: #4CAF50;
+        font-weight: bold;
+        display: none;
+      }
+      
+      .signature-uploaded i {
+        margin-right: 5px;
+      }
+      
+      /* Modal Styles - Comprehensive Improvements */
+      .modal, .confirmation-modal, .completion-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .modal-dialog, .confirmation-dialog, .completion-dialog {
+        background-color: white;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 500px;
+        position: relative;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        animation: modalFadeIn 0.3s ease;
+      }
+      
+      @keyframes modalFadeIn {
+        from {opacity: 0; transform: translateY(-20px);}
+        to {opacity: 1; transform: translateY(0);}
+      }
+      
+      .signup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        border-bottom: 1px solid #eee;
+      }
+      
+      .header-cont {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      
+      .header-cont i {
+        color: #d33139;
+      }
+      
+      .close-modal {
+        cursor: pointer;
+        font-size: 24px;
+        color: #aaa;
+        transition: color 0.2s ease;
+      }
+      
+      .close-modal:hover {
+        color: #333;
+      }
+      
+      .modal-body {
+        padding: 20px;
+      }
+      
+      .modal-cont {
+        text-align: center;
+      }
+      
+      .modal-cont p {
+        margin-bottom: 20px;
+      }
+      
+      .btn {
+        padding: 10px 25px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        margin: 0 5px;
+        transition: all 0.2s ease;
+      }
+      
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      
+      .btn-success {
+        background-color: #4CAF50;
+        color: white;
+      }
+      
+      .btn-success:hover {
+        background-color: #45a049;
+      }
+      
+      .btn-danger {
+        background-color: #d33139;
+        color: white;
+      }
+      
+      .btn-danger:hover {
+        background-color: #A91428;
+      }
+      
+      /* Confirmation Modal */
+      .confirmation-dialog {
+        padding: 30px 20px;
+        text-align: center;
+      }
+      
+      .confirmation-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        color: #333;
+      }
+      
+      .confirmation-content {
+        margin-bottom: 0;
+        text-align: center;
+      }
+      
+      .toggle-switch {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+      
+      .toggle-btn {
+        background-color: #d33139;
+        color: white;
+        padding: 12px 40px;
+        border-radius: 25px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+      
+      .toggle-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      }
+      
+      .toggle-btn.inactive {
+        background-color: #e0e0e0;
+        color: #666;
+      }
+      
+      /* Completion Modal */
+      .completion-dialog {
+        padding: 40px 20px;
+        text-align: center;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      
+      .completion-content {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 20px 0;
+        color: #333;
+      }
+      
+      .close-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 28px;
+        cursor: pointer;
+        color: #666;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f0f0f0;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+      
+      .close-btn:hover {
+        background-color: #d33139;
+        color: white;
+      }
+      
+      
+
+      
+      /* Media Queries for Responsiveness */
+      @media screen and (min-width: 768px) {
+        .content-container {
+          flex-direction: row;
+        }
+        
+        .left-panel {
+          width: 25%;
+        }
+        
+        .right-panel {
+          width: 75%;
+          max-height: calc(100vh - 140px);
+        }
+        
+        .diploma-list-header {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+        
+        .search-bar {
+          flex-direction: row;
+          align-items: center;
+          width: auto;
+        }
+        
+        .search-input {
+          width: auto;
+          padding: 8px 65px 8px 15px;
+        }
+      }
+      
+      /* Additional mobile-specific styles */
+      @media screen and (max-width: 767px) {
+        .navbar {
+          width: 60px;
+          padding: 15px 0;
+        }
+        
+        .navbar img {
+          width: 45px;
+          margin-bottom: 20px;
+        }
+        
+        .navbar a {
+          padding: 12px;
+          text-align: center;
+        }
+        
+        .navbar i {
+          margin-right: 0;
+          font-size: 18px;
+        }
+        
+        .navbar a span {
+          display: none;
+        }
+        
+        .next-btn {
+          padding: 12px 30px;
+          font-size: 14px;
+        }
+        
+        .toggle-btn {
+          padding: 10px 25px;
+          font-size: 14px;
+        }
+        
+        .completion-content {
+          font-size: 22px;
+        }
+
+      }

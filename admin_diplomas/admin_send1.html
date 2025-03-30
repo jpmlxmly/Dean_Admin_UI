@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/index.css"/>
+    <link rel="stylesheet" href="/dean/diplomas.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        background-color: #f7faff;
+      }
+
+      .subject-container
+      {
+        width: 100%;
+        background-color: rgb(248, 248, 248);
+        border-radius: 5px;
+        padding: 10px 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.107);
+        border: 2px dashed #cecece;
+        display: flex;
+      }
+      .subject-container input[type=text]
+      {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        padding: 10px;
+        background-color: transparent;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="navbar-container"></div> <!--Navbar will be populated here-->
+
+    <div class="main-content">
+      <div class="header-banner">
+        <h1>Process Diplomas</h1>
+      </div>
+
+      <div class="subject-container">
+        <input type="text" name="name" placeholder="Insert Subject: ">
+      </div>
+      
+      <div class="content-container">
+        <div class="left-panel">
+            <div class="btn-container">
+                <button id="process-btn" class="process-btn">Send Diplomas</button>
+            </div>
+          
+            <div id="signature-section" class="signature-section">
+                <h3>Signature:</h3>
+                <div id="signature-uploaded" class="signature-uploaded" style="display: flex;">
+                  <i class="fa-solid fa-check-circle"></i>
+                  <span>esignature.png uploaded</span>
+                </div>
+                <p class="format-text">Accepted Formats: PNG</p>
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <div class="diploma-list-header">
+              <h2>COT 2025-2026</h2>
+              <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search Name:">
+                <div class="entries-selector">
+                  <span>Show</span>
+                  <select>
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                  </select>
+                  <span>entries</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="diploma-container">
+              <div class="diploma-items">
+                <!-- Diploma 1 -->
+                <div class="diploma-item">
+                  <img src="/rsc/diploma1.png" alt="Diploma of Achievement for Reetu Singh">
+                </div>
+                
+                <!-- Diploma 2 -->
+                <div class="diploma-item">
+                    <img src="/rsc/diploma1.png" alt="Diploma of Achievement">
+                </div>
+                
+                <!-- Diploma 3 -->
+                <div class="diploma-item">
+                    <img src="/rsc/diploma1.png" alt="Diploma of Achievement">
+                </div>
+                
+                <!-- Diploma 4 -->
+                <div class="diploma-item">
+                  <img src="/rsc/diploma1.png" alt="Diploma of Achievement">
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      
+      <button id="next-btn" class="next-btn">Next</button>
+    </div>
+
+    <div class="confirmation-modal" id="confirmation-modal">
+      <div class="confirmation-dialog">
+        <div class="confirmation-content">
+          <div class="confirmation-title">Are you sure you want to send all diplomas from COT, 2025-2026?</div>
+          
+          <div class="toggle-switch">
+            <div class="toggle-btn" id="confirm-yes">Yes</div>
+            <div class="toggle-btn inactive" id="confirm-no">No</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="completion-modal" id="completion-modal">
+      <div class="completion-dialog">
+        <span class="close-btn" id="completion-close">&times;</span>
+        <div class="completion-content">Sending Complete</div>
+      </div>
+    </div>
+    
+    <script>
+    //fetches navbar
+    fetch("/navbar.html")
+    .then(response => response.text())
+        .then(data => {
+        document.getElementById("navbar-container").innerHTML = data;
+        })
+        .catch(error => console.error("Error loading navbar:", error));
+
+      // Function to toggle dropdown
+      function toggleDropdown(element) {
+        const submenu = element.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+      }
+   
+
+      // Digitally Sign Diplomas button click - Show confirmation modal
+      document.getElementById('process-btn').addEventListener('click', function() {
+        document.getElementById('confirmation-modal').style.display = 'flex';
+        
+        // Add animation class
+        document.querySelector('.confirmation-dialog').classList.add('animate');
+      });
+
+      // Yes button in confirmation modal
+      document.getElementById('confirm-yes').addEventListener('click', function() {
+        // Hide confirmation modal
+        document.getElementById('confirmation-modal').style.display = 'none';
+        
+        // Show completion modal
+        document.getElementById('completion-modal').style.display = 'flex';
+      });
+
+      // No button in confirmation modal
+      document.getElementById('confirm-no').addEventListener('click', function() {
+        // Hide confirmation modal only
+        document.getElementById('confirmation-modal').style.display = 'none';
+      });
+
+      // Close button in completion modal
+      document.getElementById('completion-close').addEventListener('click', function() {
+        // Hide completion modal
+        document.getElementById('completion-modal').style.display = 'none';
+      });
+
+      // Allow clicking outside modal to close it (optional)
+      document.querySelectorAll('.confirmation-modal, .completion-modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+          if (e.target === this) {
+            this.style.display = 'none';
+          }
+        });
+      });
+
+      // ESC key to close modals
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          document.querySelectorAll('.confirmation-modal, .completion-modal').forEach(modal => {
+            modal.style.display = 'none';
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

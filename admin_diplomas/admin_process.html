@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/index.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        background-color: #f7faff;
+      }
+
+      /* Main Content */
+      .main-content {
+        flex-grow: 1;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .welcome-banner {
+        background-image: linear-gradient(-90deg, #be1010, #8C0001);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .welcome-banner h1 {
+        font-size: 24px;
+      }
+
+      .card-container {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        background-color: white;
+        border-radius: 10px;
+        padding: 30px 70px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); 
+      }
+
+      .task-card {
+        display: flex;
+        justify-content: space-between;
+        gap: 50px;
+        position: relative;
+      }
+      
+      .task-card::after {
+        content: "";
+        position: absolute;
+        top: 10%;
+        bottom: 10%;
+        left: 50%;
+        width: 1px;
+        background-color: #e0e0e0;
+      }
+
+      .task-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-bottom: 20px;
+      }
+      
+      .task-info h2 {
+        font-size: 28px;
+        color: #333;
+        margin-bottom: 2px;
+      }
+
+      .task-info p {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 20px;
+      }
+
+      .task-icon {
+        width: 130px;
+        height: 130px;
+        background-color: #f8f8f8;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .task-icon i {
+        font-size: 65px;
+        color: #d33139;
+      }
+
+      .process-btn {
+        width: 100px;
+        font-weight: bold;
+        background-color: white;
+        color: #d33139;
+        border: 1px solid #d33139;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .process-btn:hover {
+        background-color: #d33139;
+        color: white;
+      }
+
+      .college-containers {
+        margin-top: 1.5%;
+        width: 100%;
+        display: flex;
+        overflow-y: auto;
+        flex-direction: column;
+        gap: 15px;
+        display: none; /* Hide by default */
+      }
+      
+      .college-content {
+        width: 100%;
+        background-color: #F3F3F3;
+        padding: 25px 40px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 5px rgba(0, 0, 0, 0.088); 
+      }
+
+      .college-content h2 {
+        font-size: 30px;
+        flex: 1;
+      }
+
+      .college-content p.declined-label {
+        color: #d5162f;
+        font-weight: bold;
+        margin-right: 20px;
+        font-size: 18px;
+      }
+      
+      .college-content p.signed-label {
+        color: #4cd516;
+        font-weight: bold;
+        margin-right: 20px;
+        font-size: 18px;
+      }
+
+      .college-content a {
+        width: 125px;
+        font-weight: bold;
+        background-color: #F3F3F3;
+        color: #d33139;
+        border: 1px solid #d33139;
+        box-shadow: 0 4px 3px rgba(0, 0, 0, 0.088); 
+        padding: 7px 15px;
+        border-radius: 8px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .college-content a:hover{
+        background-color: #ffffff;
+        box-shadow: 0 4px 3px rgba(0, 0, 0, 0.088); 
+        transform:translateY(-2px)
+      }
+
+      .filter-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .filter-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      .filter-btn {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        padding: 8px 20px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #333;
+      }
+
+      .filter-btn:after {
+        content: '';
+        display: inline-block;
+        margin-left: 10px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-top: 5px solid #333;
+      }
+
+      .filter-options {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      .filter-options a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+      }
+
+      .filter-options a:hover {
+        background-color: #f1f1f1;
+      }
+
+      .filter-dropdown.active .filter-options {
+        display: block;
+      }
+      
+      /* Animation for showing college containers */
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .college-containers.show {
+        display: flex;
+        animation: fadeIn 0.3s ease-in-out forwards;
+      }
+
+      /* Responsive Styles */
+      @media screen and (max-width: 1024px) {
+        .card-container {
+          width: 85%;
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        .card-container {
+          width: 90%;
+          padding: 20px;
+        }
+        
+        .task-icon {
+          width: 60px;
+          height: 60px;
+        }
+        
+        .task-icon i {
+          font-size: 24px;
+        }
+        
+        .task-info h2 {
+          font-size: 22px;
+        }
+
+        .college-content {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 15px;
+        }
+
+        .college-content a {
+          align-self: flex-end;
+        }
+      }
+
+      @media screen and (max-width: 576px) {
+        .card-container {
+          width: 100%;
+          padding: 15px;
+        }
+    
+        .task-card {
+          flex-direction: column;
+          text-align: center;
+        }
+        
+        .task-info {
+          align-items: center;
+        }
+        
+        .process-btn {
+          max-width: 100%;
+        }
+
+        .task-card::after {
+          top: 50%;
+          bottom: auto;
+          left: 10%;
+          right: 10%;
+          width: auto;
+          height: 1px;
+        }
+      }
+
+      @media screen and (max-height: 600px) {
+        .main-content {
+          gap: 15px;
+        }
+        
+        .welcome-banner {
+          padding: 15px;
+        }
+        
+        .card-container {
+          padding: 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar-container"></div> <!--Navbar will be populated here-->
+
+    <div class="main-content">
+      <div class="welcome-banner">
+        <h1>Send Diplomas to Signatories</h1>
+      </div>
+
+      <div class="card-container">
+        <div class="task-card">
+          <div class="task-info">
+            <h2>Incoming Diplomas</h2>
+            <p>Send Incoming Diplomas</p>
+            <a href="admin_send.html" class="process-btn">Send</a>
+            <div class="task-icon">
+              <i class="fa-regular fa-file-lines"></i>
+            </div>
+          </div>
+          <div class="task-info">
+            <h2>Signatures</h2>
+            <p>View Signed and Declined Diplomas</p>
+            <button id="viewButton" class="process-btn">View</button>
+            <div class="task-icon">
+              <i class="fa-regular fa-file-excel"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="collegeContainers" class="college-containers">
+        <div class="college-content">
+          <h2>CAS, 2025-2026</h2>
+          <a href="admin_send.html">View</a>
+        </div>
+        <div class="college-content">
+          <h2>COT, 2025-2026</h2>
+          <a href="admin_send.html">View</a>
+        </div>
+        <div class="college-content">
+          <h2>CITHM, 2025-2026</h2>
+          <a href="admin_send.html">View</a>
+        </div>
+        <div class="college-content">
+          <h2>CIR, 2025-2026</h2>
+          <a href="admin_send.html">View</a>
+        </div>
+      </div>
+
+      <div id="declinedCollegeContainers" class="college-containers">
+        <div class="filter-container">
+          <div class="filter-dropdown" id="filterDropdown">
+            <button class="filter-btn">All</button>
+            <div class="filter-options">
+              <a href="#" data-filter="all">All</a>
+              <a href="#" data-filter="declined">Signed</a>
+              <a href="#" data-filter="pending">Declined</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="college-content">
+            <h2>COT, 2026-2027</h2>
+            <p class="signed-label">Signed</p>
+            <a href="admin_signed.html">View</a>
+          </div>
+        <div class="college-content">
+          <h2>COT, 2025-2026</h2>
+          <p class="declined-label">Declined</p>
+          <a href="admin_declined.html">View</a>
+        </div>
+        <div class="college-content">
+          <h2>CITHM, 2025-2026</h2>
+          <p class="declined-label">Declined</p>
+          <a href="admin_declined.html">View</a>
+        </div>
+        
+      </div>
+    </div>
+    <script>
+// fetches navbar
+fetch("/navbar.html")
+.then(response => response.text())
+  .then(data => {
+    document.getElementById("navbar-container").innerHTML = data;
+  })
+  .catch(error => console.error("Error loading navbar:", error));
+  
+const collegeContainers = document.getElementById('collegeContainers');
+const declinedCollegeContainers = document.getElementById('declinedCollegeContainers');
+const viewButton = document.getElementById('viewButton');
+
+viewButton.addEventListener('click', function() {
+  // Toggle between declined college containers
+  if (collegeContainers.classList.contains('show')) {
+    collegeContainers.classList.remove('show');
+    declinedCollegeContainers.classList.add('show');
+  } else {
+    declinedCollegeContainers.classList.toggle('show');
+    if (declinedCollegeContainers.classList.contains('show')) {
+      collegeContainers.classList.remove('show');
+    }
+  }
+});
+
+// Filter dropdown functionality
+const filterDropdown = document.getElementById('filterDropdown');
+const filterBtn = filterDropdown.querySelector('.filter-btn');
+
+filterBtn.addEventListener('click', function() {
+  filterDropdown.classList.toggle('active');
+});
+
+// Close filter dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  if (!filterDropdown.contains(event.target)) {
+    filterDropdown.classList.remove('active');
+  }
+});
+
+// Filter options functionality
+const filterOptions = filterDropdown.querySelectorAll('.filter-options a');
+
+filterOptions.forEach(option => {
+  option.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Update filter button text
+    filterBtn.textContent = this.textContent;
+    
+    // Close dropdown
+    filterDropdown.classList.remove('active');
+    
+    const filterValue = this.getAttribute('data-filter');
+    console.log(`Filter selected: ${filterValue}`);
+  });
+});
+
+// Navbar Settings
+window.currentPage = 'dashboard'; // Set this variable before loading navbar
+function toggleDropdown(element) {
+  const submenu = element.nextElementSibling;
+  submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+}
+    </script>
+  </body>
+</html>

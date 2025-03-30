@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/index.css"/>
+    <link rel="stylesheet" href="/dean/diplomas.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;
+        background-color: #f7faff;
+      }
+      
+      .checkbox-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+      }
+
+      .diploma-checkbox {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+
+      .diploma-item {
+        position: relative;
+      }
+
+      .diploma-remarks {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(108, 117, 125, 0.9);
+        color: white;
+        padding: 8px;
+        font-size: 14px;
+        text-align: center;
+      }
+
+
+      .decline-reason-modal {
+        animation: fadeIn 0.3s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .submit-btn:hover {
+        background-color: #c9302c;
+      }
+
+      .cancel-btn:hover {
+        background-color: #5a6268;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <img src="/logo.png" alt="Logo" />
+      <ul>
+        <li><a href="registrar_dboard.html" class="active"><i class="fa-solid fa-house-user"></i>  Dashboard</a></li>
+        <li class="dropdown">
+          <a href="#" onclick="toggleDropdown(this)"><i class="fa-solid fa-gear"></i>  Settings</a>
+          <ul class="submenu">
+            <li><a href="registrar_settings.html"><i class="fa-solid fa-user-edit"></i>  Edit Profile</a></li>
+          </ul>
+        </li>
+        <li><a href="login.html"><i class="fa-solid fa-right-from-bracket"></i>  Logout</a></li>
+      </ul>
+    </nav>
+    
+    <div class="main-content">
+      <div class="header-banner">
+        <h1>Process Diplomas</h1>
+      </div>
+      
+      <div class="content-container">
+        <div class="left-panel">
+            <div class="btn-container">
+                <button id="process-btn" class="process-btn">Batch Processing</button>
+                <button id="individual-btn" class="process-btn" style="margin-top: 2mm;">Individual Processing</button>
+                <button id="digitally-sign-btn" class="digitally-sign-btn">Digitally Sign Diplomas</button>
+            </div>
+          
+            <div id="signature-section" class="signature-section">
+                <h3>Signature:</h3>
+                <div id="signature-uploaded" class="signature-uploaded" style="display: flex;">
+                  <i class="fa-solid fa-check-circle"></i>
+                  <span>esignature.png uploaded</span>
+                </div>
+                <p class="format-text">Accepted Formats: PNG</p>
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <div class="diploma-list-header">
+              <h2>COT 2025-2026</h2>
+              <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Search Name:">
+                <div class="entries-selector">
+                  <span>Show</span>
+                  <select>
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                  </select>
+                  <span>entries</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="diploma-container">
+              <div class="diploma-items">
+                <!-- Diploma 1 -->
+                <div class="diploma-item">
+                  <img src="/rsc/diploma1.png" alt="Diploma of Achievement for Reetu Singh">
+                </div>
+                
+                <!-- Diploma 2 -->
+                <div class="diploma-item">
+                    <img src="/rsc/diploma1.png" alt="Diploma of Achievement">
+                </div>
+                
+                <!-- Diploma 3 -->
+                <div class="diploma-item">
+                    <img src="/rsc/diploma1.png" alt="Diploma of Achievement">
+                </div>
+                
+                <!-- Diploma 4 -->
+                <div class="diploma-item">
+                  <img src="/rsc/diploma1.png" alt="Diploma of Achievement">
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+      
+      <button id="next-btn" class="next-btn">Next</button>
+    </div>
+
+    <div class="confirmation-modal" id="confirmation-modal">
+      <div class="confirmation-dialog">
+        <div class="confirmation-content">
+          <div class="confirmation-title">Are you sure you want to sign all diplomas from COT, 2025-2026?</div>
+          
+          <div class="toggle-switch">
+            <div class="toggle-btn" id="confirm-yes">Yes</div>
+            <div class="toggle-btn inactive" id="confirm-no">No</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="completion-modal" id="completion-modal">
+      <div class="completion-dialog">
+        <span class="close-btn" id="completion-close">&times;</span>
+        <div class="completion-content">Signing Complete</div>
+      </div>
+    </div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hide initial sections
+      document.getElementById('signature-section').style.display = 'none';
+      document.getElementById('digitally-sign-btn').style.display = 'none';
+      document.getElementById('next-btn').style.display = 'none';
+    });
+
+    // Batch processing flow
+    document.getElementById('process-btn').addEventListener('click', function() {
+      if (this.textContent === 'Batch Processing') {
+        document.getElementById('individual-btn').style.display = 'none';
+        this.textContent = 'E-Sign All Diplomas';
+        this.className = 'esign-btn';
+        document.getElementById('signature-section').style.display = 'block';
+      } 
+      else if (this.textContent === 'E-Sign All Diplomas') {
+        document.getElementById('next-btn').style.display = 'block';
+      }
+    });
+
+    // Individual processing flow
+    document.getElementById('individual-btn').addEventListener('click', function() {
+      document.getElementById('process-btn').style.display = 'none';
+      document.getElementById('signature-section').style.display = 'block';
+      this.textContent = 'E-Sign Selected Diplomas';
+      this.className = 'esign-btn';
+      
+      // Add checkboxes to diplomas
+      document.querySelectorAll('.diploma-item').forEach(item => {
+        const checkboxContainer = document.createElement('div');
+        checkboxContainer.className = 'checkbox-container';
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'diploma-checkbox';
+        checkbox.checked = true;
+        
+        checkbox.addEventListener('change', function() {
+          if (!this.checked) {
+            showDeclineReasonModal(this);
+          } else {
+            // Remove remarks when rechecked
+            const diplomaItem = this.closest('.diploma-item');
+            const existingRemarks = diplomaItem.querySelector('.diploma-remarks');
+            if (existingRemarks) {
+              diplomaItem.removeChild(existingRemarks);
+            }
+          }
+        });
+        
+        checkboxContainer.appendChild(checkbox);
+        item.appendChild(checkboxContainer);
+      });
+      
+      document.getElementById('next-btn').style.display = 'block';
+    });
+
+    // Create and show decline reason modal
+    function showDeclineReasonModal(checkbox) {
+      const modal = document.createElement('div');
+      modal.className = 'decline-reason-modal';
+      Object.assign(modal.style, {
+        position: 'fixed', top: '0', left: '0', width: '100%', height: '100%',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', display: 'flex', justifyContent: 'center', 
+        alignItems: 'center', zIndex: '1000'
+      });
+      
+      const modalContent = document.createElement('div');
+      modalContent.className = 'decline-reason-content';
+      Object.assign(modalContent.style, {
+        backgroundColor: 'white', padding: '20px', borderRadius: '5px', width: '500px'
+      });
+
+      const modalTitle = document.createElement('h3');
+      modalTitle.textContent = 'Please input a reason for declining';
+      modalTitle.style.marginBottom = '20px';
+      
+      const reasonInput = document.createElement('input');
+      reasonInput.type = 'text';
+      Object.assign(reasonInput.style, {
+        width: '100%', padding: '10px', marginBottom: '20px', borderRadius: '5px',
+        border: '1px solid #ccc'
+      });
+      
+      const buttonContainer = document.createElement('div');
+      Object.assign(buttonContainer.style, {
+        display: 'flex', justifyContent: 'flex-end', gap: '10px'
+      });
+      
+      const cancelButton = document.createElement('button');
+      cancelButton.textContent = 'Cancel';
+      cancelButton.className = 'cancel-btn';
+      Object.assign(cancelButton.style, {
+        padding: '8px 16px', backgroundColor: '#6c757d', color: 'white',
+        border: 'none', borderRadius: '5px', cursor: 'pointer'
+      });
+
+      const submitButton = document.createElement('button');
+      submitButton.textContent = 'Submit';
+      submitButton.className = 'submit-btn';
+      Object.assign(submitButton.style, {
+        padding: '8px 16px', backgroundColor: '#d9534f', color: 'white',
+        border: 'none', borderRadius: '5px', cursor: 'pointer'
+      });
+      
+
+      
+      // Submit handling
+      submitButton.addEventListener('click', function() {
+        const reason = reasonInput.value.trim();
+        if (reason) {
+          const diplomaItem = checkbox.closest('.diploma-item');
+          const remarks = document.createElement('div');
+          remarks.className = 'diploma-remarks';
+          remarks.textContent = 'Remarks: ' + reason;
+          Object.assign(remarks.style, {
+            backgroundColor: '#6c757d', color: 'white', padding: '5px',
+            marginTop: '5px', textAlign: 'center'
+          });
+          
+          diplomaItem.appendChild(remarks);
+          checkbox.checked = false;
+          document.body.removeChild(modal);
+        } else {
+          alert('Please enter a reason for declining.');
+        }
+      });
+      
+      // Cancel handling
+      cancelButton.addEventListener('click', function() {
+        checkbox.checked = true;
+        document.body.removeChild(modal);
+      });
+      
+      buttonContainer.append(cancelButton, submitButton);
+      modalContent.append(modalTitle, reasonInput, buttonContainer);
+      modal.appendChild(modalContent);
+      document.body.appendChild(modal);
+    }
+
+    // Next button transitions
+    document.getElementById('next-btn').addEventListener('click', function() {
+      const isIndividual = 
+        document.getElementById('individual-btn').textContent === 'E-Sign Selected Diplomas' && 
+        document.getElementById('individual-btn').style.display !== 'none';
+        
+      // Hide current controls
+      document.getElementById(isIndividual ? 'individual-btn' : 'process-btn').style.display = 'none';
+      document.getElementById('signature-section').style.display = 'none';
+      this.style.display = 'none';
+      
+      // Show sign button with appropriate text
+      const signBtn = document.getElementById('digitally-sign-btn');
+      signBtn.style.display = 'block';
+      signBtn.textContent = isIndividual ? 'Digitally Sign Selected Diplomas' : 'Digitally Sign All Diplomas';
+      
+      // Hide checkboxes in individual mode
+      if (isIndividual) {
+        document.querySelectorAll('.checkbox-container').forEach(container => {
+          container.style.display = 'none';
+        });
+      }
+    });
+
+    // Show confirmation modal
+    document.getElementById('digitally-sign-btn').addEventListener('click', function() {
+      const confirmText = this.textContent.includes('Selected') ? 
+        'Are you sure you want to sign selected diplomas from COT, 2025-2026?' : 
+        'Are you sure you want to sign all diplomas from COT, 2025-2026?';
+      
+      document.querySelector('.confirmation-title').textContent = confirmText;
+      document.getElementById('confirmation-modal').style.display = 'flex';
+      document.querySelector('.confirmation-dialog').classList.add('animate');
+    });
+
+    // Confirmation modal responses
+    document.getElementById('confirm-yes').addEventListener('click', function() {
+      document.getElementById('confirmation-modal').style.display = 'none';
+      document.getElementById('completion-modal').style.display = 'flex';
+    });
+
+    document.getElementById('confirm-no').addEventListener('click', function() {
+      document.getElementById('confirmation-modal').style.display = 'none';
+    });
+
+    // Close completion modal
+    document.getElementById('completion-close').addEventListener('click', function() {
+      document.getElementById('completion-modal').style.display = 'none';
+    });
+
+    // Modal dismissal handlers
+    document.querySelectorAll('.confirmation-modal, .completion-modal').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) this.style.display = 'none';
+      });
+    });
+
+    // ESC key closes all modals
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.confirmation-modal, .completion-modal')
+          .forEach(modal => modal.style.display = 'none');
+      }
+    });
+
+      // Navbar Settingss
+      window.currentPage = 'dashboard'; // Set this variable before loading navbar
+      function toggleDropdown(element) {
+        const submenu = element.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+      }
+  </script>
+  </body>
+</html>

@@ -108,7 +108,7 @@
       .status-value {
         font-size: 16px;
         font-weight: bold;
-        color: #2bd025;
+        color: #d0253c;
       }
       
       .status-badge .remarks {
@@ -144,9 +144,55 @@
         color: #d0253c;
         font-size: 16px;
         }
+            
+      /* Search and entries styles */
+      .search-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+      }
+      
+      .search-bar {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+        max-width: 600px;
+      }
+      
+      .search-input {
+        padding: 8px 15px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        width: 100%;
+        font-size: 14px;
+      }
+      
+      .search-input:focus {
+        outline: none;
+        border-color: #d33139;
+        box-shadow: 0 0 0 2px rgba(211, 49, 57, 0.1);
+      }
+      
+      .entries-selector {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      
+      .entries-selector select {
+        padding: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin: 0 5px;
+      }
       
       .diploma-container {
-        width: 90%;
+        width: 80%;
         margin-left: auto;
         margin-right: auto;
         overflow-y: auto;
@@ -156,6 +202,7 @@
       .diploma-items {
         display: flex;
         flex-direction: column;
+        gap: 20px;
       }
       
       .diploma-item {
@@ -229,53 +276,97 @@
     </style>
   </head>
   <body>
-    <div id="navbar-container"></div> <!--Navbar will be populated here-->
+    <nav class="navbar">
+        <img src="/logo.png" alt="Logo" />
+        <ul>
+          <li><a href="registrar_dboard.html" class="active"><i class="fa-solid fa-house-user"></i>  Dashboard</a></li>
+          <li class="dropdown">
+            <a href="#" onclick="toggleDropdown(this)"><i class="fa-solid fa-gear"></i>  Settings</a>
+            <ul class="submenu">
+              <li><a href="registrar_settings.html"><i class="fa-solid fa-user-edit"></i>  Edit Profile</a></li>
+            </ul>
+          </li>
+          <li><a href="login.html"><i class="fa-solid fa-right-from-bracket"></i>  Logout</a></li>
+        </ul>
+      </nav>
     
     <div class="main-content">
       <div class="header-banner">
-        <h1>View Diploma</h1>
+        <h1>View Declined Diplomas</h1>
       </div>
       
       <div class="view-container">
         <div class="diploma-list-header">
           <div class="header-info">
             <div class="header-left">
-              <h2>Reetu Singh</h2>
-              <div class="dean-name">2018-001  |  BS Computer Science</div>
+              <h1>COT 2025-2026</h1>
+              <div class="dean-name">Dean Arlene Cabellero</div>
             </div>
             
             <div class="header-right">
               <div class="status-badge">
                 <div>
                   <span class="status-label">Status:</span>
-                  <span class="status-value">SIGNED</span>
+                  <span class="status-value">DECLINED</span>
                 </div>
               </div>
-              <a href="archives.html" class="close-button">
+              <a href="registrar_dboard.html" class="close-button">
                 <i class="fas fa-times"></i>
               </a>
             </div>
           </div>
+          
+          <div class="search-controls">
+            <div class="search-bar">
+              <input type="text" class="search-input" placeholder="Search Name:">
+            </div>
+            <div class="entries-selector">
+              <span>Show</span>
+              <select>
+                <option>10</option>
+                <option>25</option>
+                <option>50</option>
+                <option>100</option>
+              </select>
+              <span>entries</span>
+            </div>
+          </div>
+        </div>
         
         <div class="diploma-container">
           <div class="diploma-items">
             <!-- Diploma 1 -->
             <div class="diploma-item">
-              <img src="/rsc/diploma2.png" alt="Diploma of Achievement for Reetu Singh">
+              <img src="/rsc/diploma1.png" alt="Diploma of Achievement for Reetu Singh">
             </div>
+            
+            <!-- Diploma 2 -->
+            <div class="diploma-item declined">
+              <img src="/rsc/diploma1.png" alt="Diploma of Achievement">
+              <div class="diploma-remarks">Remarks: Wrong Diploma Format</div>
+            </div>
+            
+            <!-- Diploma 3 -->
+            <div class="diploma-item declined">
+              <img src="/rsc/diploma1.png" alt="Diploma of Achievement">
+              <div class="diploma-remarks">Remarks: Wrong Diploma Format</div>
+            </div>
+            
+            <!-- Diploma 4 -->
+            <div class="diploma-item">
+              <img src="/rsc/diploma1.png" alt="Diploma of Achievement">
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </body>
 </html>
 <script>
-    //fetches navbar
-    fetch("/navbar.html")
-    .then(response => response.text())
-        .then(data => {
-        document.getElementById("navbar-container").innerHTML = data;
-        })
-        .catch(error => console.error("Error loading navbar:", error));
-        
-
+    // Navbar Settingss
+    window.currentPage = 'dashboard'; // Set this variable before loading navbar
+    function toggleDropdown(element) {
+        const submenu = element.nextElementSibling;
+        submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+    }
 </script>
